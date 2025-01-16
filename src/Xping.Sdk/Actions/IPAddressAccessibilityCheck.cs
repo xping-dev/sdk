@@ -9,8 +9,9 @@ using System.Collections.ObjectModel;
 using System.Net;
 using System.Net.NetworkInformation;
 using Xping.Sdk.Actions.Configurations;
-using Xping.Sdk.Core.Common;
 using Xping.Sdk.Core.Components;
+using Xping.Sdk.Core.Configuration;
+using Xping.Sdk.Core.Models;
 using Xping.Sdk.Core.Session;
 
 namespace Xping.Sdk.Actions;

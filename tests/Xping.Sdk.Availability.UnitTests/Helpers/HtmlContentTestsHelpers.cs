@@ -7,9 +7,11 @@
 
 using HtmlAgilityPack;
 using Moq;
-using Xping.Sdk.Core.Common;
+using Xping.Sdk.Core.Instrumentation;
+using Xping.Sdk.Core.Models;
+using Xping.Sdk.Core.Services;
 using Xping.Sdk.Core.Session;
-using TestContext = Xping.Sdk.Core.Components.TestContext;
+using TestContext = Xping.Sdk.Core.Session.TestContext;
 
 namespace Xping.Sdk.UnitTests.Helpers;
 

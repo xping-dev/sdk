@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
 using Xping.Sdk;
 using Xping.Sdk.Core;
-using Xping.Sdk.Core.DependencyInjection;
+using Xping.Sdk.Core.Extensions;
 using Xping.Sdk.Core.Session;
 using Xping.Sdk.Extensions;
 

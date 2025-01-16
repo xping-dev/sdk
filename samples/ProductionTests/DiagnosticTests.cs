@@ -6,25 +6,35 @@
  */
 
 using System.Net;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Playwright;
 using Xping.Sdk;
 using Xping.Sdk.Core;
+using Xping.Sdk.Core.BrowserManagement;
+using Xping.Sdk.Core.Utilities;
 using Xping.Sdk.Extensions;
+using Cookie = Microsoft.Playwright.Cookie;
 
 namespace ProductionTests;
 
 [TestFixtureSource(typeof(XpingTestFixture))]
-public class DiagnosticTests(TestAgent testAgent) : BaseTest(testAgent)
+public class DiagnosticTests(TestAgent testAgent, IServiceProvider services) : BaseTest(testAgent)
 {
     private const int MaxHtmlSizeAllowed = 150 * 1024; // 150 KB in bytes
     private const int MaxResponseTimeMs = 3000; // 3 seconds in milliseconds
-    
+
+    private readonly BrowserManager _browserManager = services.GetRequiredService<BrowserManager>();
+  
     [SetUp]
     public void SetUp()
     {
-        TestAgent.UseBrowserClient(options =>
+        _browserManager.BrowserType = BrowserType.Chromium;
+        _browserManager.LaunchOptions.Headless = true;
+        _browserManager.ContextOptions.UserAgent = UserAgent.ChromeDesktop;
+
+        TestAgent.UseBrowser(_browserManager, options =>
         {
-            options.BrowserType = BrowserType.Chromium;
+            options.AddCookie(new Cookie("name", "value"));
         });
     }
 

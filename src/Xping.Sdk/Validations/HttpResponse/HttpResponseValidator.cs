@@ -5,13 +5,14 @@
  * License: [MIT]
  */
 
-using Xping.Sdk.Core.Common;
 using Xping.Sdk.Core.Components;
 using Xping.Sdk.Core.Session;
 using Xping.Sdk.Core.Extensions;
 using Xping.Sdk.Shared;
 using Xping.Sdk.Validations.HttpResponse.Internals;
 using Xping.Sdk.Actions;
+using Xping.Sdk.Core.Configuration;
+using Xping.Sdk.Core.Models;
 
 namespace Xping.Sdk.Validations.HttpResponse;
 
@@ -116,13 +117,13 @@ public class HttpResponseValidator : TestComponent
 
     private static TestStep? GetHttpClientRequestSenderStep(IReadOnlyCollection<TestStep> steps)
     {
-        var testStep = steps.FirstOrDefault(step => step.Name == nameof(HttpClientRequestSender));
+        var testStep = steps.FirstOrDefault(step => step.Name == nameof(HttpClientHandler));
         return testStep;
     }
 
     private static TestStep? GetBrowserRequestSenderStep(IReadOnlyCollection<TestStep> steps)
     {
-        var testStep = steps.FirstOrDefault(step => step.Name == nameof(BrowserRequestSender));
+        var testStep = steps.FirstOrDefault(step => step.Name == nameof(BrowserHandler));
         return testStep;
     }
 }

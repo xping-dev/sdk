@@ -8,7 +8,8 @@
 using System.Text.RegularExpressions;
 using System.Xml.XPath;
 using HtmlAgilityPack;
-using Xping.Sdk.Core.Components;
+using Xping.Sdk.Core.Configuration;
+using Xping.Sdk.Core.Session;
 using Xping.Sdk.Validations.TextUtils;
 
 namespace Xping.Sdk.Validations.Content.Html;

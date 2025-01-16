@@ -9,9 +9,10 @@ using System.Globalization;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Xml;
-using Xping.Sdk.Core.Common;
+using Xping.Sdk.Core.Models;
 using Xping.Sdk.Core.Session;
 using Xping.Sdk.Core.Session.Serialization;
+using Xping.Sdk.Core.Utilities.Serialization;
 
 namespace Xping.Sdk.Core.UnitTests.Session.Serialization;
 
@@ -93,7 +94,7 @@ internal class TestSessionSerializationTests
         var doc = new XmlDocument();
         doc.Load(reader);
         
-        // Create a NamespaceManager and add the namespace used in the XML
+        // CreateInstrumentedContext a NamespaceManager and add the namespace used in the XML
         var namespaceManager = new XmlNamespaceManager(doc.NameTable);
         namespaceManager.AddNamespace("ns", "http://schemas.datacontract.org/2004/07/Xping.Sdk.Core.Session");
 
@@ -141,7 +142,7 @@ internal class TestSessionSerializationTests
         var doc = new XmlDocument();
         doc.Load(reader);
 
-        // Create a NamespaceManager and add the namespace used in the XML
+        // CreateInstrumentedContext a NamespaceManager and add the namespace used in the XML
         var namespaceManager = new XmlNamespaceManager(doc.NameTable);
         namespaceManager.AddNamespace("ns", "http://schemas.datacontract.org/2004/07/Xping.Sdk.Core.Session");
 
@@ -186,7 +187,7 @@ internal class TestSessionSerializationTests
         var doc = new XmlDocument();
         doc.Load(reader);
 
-        // Create a NamespaceManager and add the namespace used in the XML
+        // CreateInstrumentedContext a NamespaceManager and add the namespace used in the XML
         var namespaceManager = new XmlNamespaceManager(doc.NameTable);
         namespaceManager.AddNamespace("ns", "http://schemas.datacontract.org/2004/07/Xping.Sdk.Core.Session");
 

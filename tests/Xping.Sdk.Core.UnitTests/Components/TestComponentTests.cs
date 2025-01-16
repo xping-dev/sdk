@@ -8,9 +8,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Xping.Sdk.Core.Components;
+using Xping.Sdk.Core.Configuration;
+using Xping.Sdk.Core.Services;
 using Xping.Sdk.Core.Session;
 using Xping.Sdk.UnitTests.TestFixtures;
-using TestContext = Xping.Sdk.Core.Components.TestContext;
+using TestContext = Xping.Sdk.Core.Session.TestContext;
 
 namespace Xping.Sdk.UnitTests.Components;
 

@@ -7,11 +7,11 @@
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Xping.Sdk.Core.DependencyInjection;
 using Xping.Sdk.Core;
 using Xping.Sdk.Core.Session;
 using Microsoft.Extensions.Logging;
 using Xping.Sdk.Extensions;
+using Xping.Sdk.Core.Extensions;
 
 namespace Xping.Sdk.IntegrationTests.TestFixtures;
 
@@ -44,7 +44,7 @@ public static class TestFixtureProvider
                 {
                     agent.UseDnsLookup()
                          .UseIPAddressAccessibilityCheck()
-                         .UseBrowserClient();
+                         .UseBrowser();
                 });
         });
         builder.ConfigureLogging(logging =>

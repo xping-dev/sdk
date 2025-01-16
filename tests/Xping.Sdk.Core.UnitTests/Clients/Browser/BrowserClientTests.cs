@@ -7,7 +7,8 @@
 
 using Microsoft.Playwright;
 using Moq;
-using Xping.Sdk.Core.Clients.Browser;
+using Xping.Sdk.Core.BrowserManagement;
+using Xping.Sdk.Core.Configuration;
 
 namespace Xping.Sdk.Core.UnitTests.Clients.Browser;
 
@@ -19,7 +20,7 @@ public sealed class BrowserClientTests
     private Mock<IPage> _mockPage;
     private Mock<IRequest> _mockRequest;
     private Mock<IResponse> _mockResponse;
-    private BrowserConfiguration _configuration;
+    private BrowserOptions _configuration;
     private BrowserClient _client;
     private IHttpResponseHandler _handler;
     private IHttpRequestInterceptor _httpRequestInterceptor;
@@ -37,7 +38,7 @@ public sealed class BrowserClientTests
         _mockPage = new Mock<IPage>();
         _mockRequest = new Mock<IRequest>();
         _mockResponse = new Mock<IResponse>();
-        _configuration = new BrowserConfiguration();
+        _configuration = new BrowserOptions();
         _client = new BrowserClient(_mockBrowser.Object, _mockBrowserContext.Object, _mockPage.Object, _configuration);
 
         // Set up the Browser and browser's context to return mocked page.

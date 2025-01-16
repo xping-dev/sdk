@@ -5,17 +5,19 @@
  * License: [MIT]
  */
 
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Playwright;
 using Xping.Sdk.Actions;
 using Xping.Sdk.Actions.Configurations;
 using Xping.Sdk.Core;
-using Xping.Sdk.Core.Clients.Browser;
-using Xping.Sdk.Core.Clients.Http;
+using Xping.Sdk.Core.BrowserManagement;
+using Xping.Sdk.Core.Configuration;
 using Xping.Sdk.Core.Extensions;
 using Xping.Sdk.Shared;
 using Xping.Sdk.Validations.Content.Html;
 using Xping.Sdk.Validations.Content.Page;
 using Xping.Sdk.Validations.HttpResponse;
+using HttpClientHandler = Xping.Sdk.Actions.HttpClientHandler;
 
 namespace Xping.Sdk.Extensions;
 
@@ -30,7 +32,7 @@ public static class TestAgentExtensions
     /// <param name="testAgent">The instance of TestAgent to configure.</param>
     public static TestAgent UseDnsLookup(this TestAgent testAgent)
     {
-        return testAgent.RequireNotNull(nameof(testAgent)).Replace(new DnsLookup());
+        return testAgent.RequireNotNull(nameof(testAgent)).Update(new DnsLookup());
     }
 
     /// <summary>
@@ -44,7 +46,7 @@ public static class TestAgentExtensions
         var configuration = new PingConfiguration();
         options?.Invoke(configuration);
 
-        return testAgent.RequireNotNull(nameof(testAgent)).Replace(new IPAddressAccessibilityCheck(configuration));
+        return testAgent.RequireNotNull(nameof(testAgent)).Update(new IPAddressAccessibilityCheck(configuration));
     }
 
     /// <summary>
@@ -52,25 +54,34 @@ public static class TestAgentExtensions
     /// </summary>
     /// <param name="testAgent">The instance of TestAgent to configure.</param>
     /// <param name="options">Optional configuration settings for the HttpClient.</param>
-    public static TestAgent UseHttpClient(this TestAgent testAgent, Action<HttpClientConfiguration>? options = null)
+    public static TestAgent UseHttpClient(this TestAgent testAgent, Action<HttpClientOptions>? options = null)
     {
-        var configuration = new HttpClientConfiguration();
+        ArgumentNullException.ThrowIfNull(testAgent, nameof(testAgent));
+
+        var configuration = new HttpClientOptions();
         options?.Invoke(configuration);
 
-        return testAgent.RequireNotNull(nameof(testAgent)).Replace(new HttpClientRequestSender(configuration));
+        return testAgent.Update(new HttpClientHandler(configuration));
     }
 
     /// <summary>
     /// Configures the TestAgent to simulate browser requests.
     /// </summary>
     /// <param name="testAgent">The instance of TestAgent to configure.</param>
-    /// <param name="options">Optional configuration settings for the browser simulation.</param>
-    public static TestAgent UseBrowserClient(this TestAgent testAgent, Action<BrowserConfiguration>? options = null)
+    /// <param name="browserManager"></param>
+    /// <param name="configureOptions">Optional configuration settings for the browser simulation.</param>
+    public static TestAgent UseBrowser(
+        this TestAgent testAgent, 
+        BrowserManager? browserManager = null,
+        Action<BrowserOptions>? configureOptions = null)
     {
-        var configuration = new BrowserConfiguration();
-        options?.Invoke(configuration);
+        ArgumentNullException.ThrowIfNull(testAgent, nameof(testAgent));
 
-        return testAgent.RequireNotNull(nameof(testAgent)).Replace(new BrowserRequestSender(configuration));
+        var options = new BrowserOptions();
+        configureOptions?.Invoke(options);
+        browserManager ??= testAgent.ServiceProvider.GetRequiredService<BrowserManager>();
+
+        return testAgent.Update(new BrowserHandler(browserManager, options));
     }
 
     /// <summary>

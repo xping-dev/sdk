@@ -9,12 +9,13 @@ using System.Xml.XPath;
 using HtmlAgilityPack;
 using Moq;
 using Xping.Sdk.Core.Common;
+using Xping.Sdk.Core.Models;
 using Xping.Sdk.Core.Session;
 using Xping.Sdk.UnitTests.Helpers;
 using Xping.Sdk.Validations;
 using Xping.Sdk.Validations.Content.Html.Internals;
 using Xping.Sdk.Validations.TextUtils;
-using TestContext = Xping.Sdk.Core.Components.TestContext;
+using TestContext = Xping.Sdk.Core.Session.TestContext;
 
 namespace Xping.Sdk.Availability.UnitTests.Validations.Content.Html.Internals;
 

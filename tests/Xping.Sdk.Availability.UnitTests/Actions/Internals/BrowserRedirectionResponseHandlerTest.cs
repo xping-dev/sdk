@@ -11,8 +11,8 @@ using Microsoft.Playwright;
 using Moq;
 using Xping.Sdk.Actions.Internals;
 using Xping.Sdk.UnitTests.Helpers;
-using Xping.Sdk.Core.Clients.Browser;
 using Xping.Sdk.Core.Session;
+using Xping.Sdk.Core.HttpClients;
 
 namespace Xping.Sdk.Availability.UnitTests.Actions.Internals;
 
@@ -87,7 +87,7 @@ public sealed class BrowserRedirectionResponseHandlerTest
     public void HandleResponseTracksRedirectionWhenNoCircularDependencyIsDetected()
     {
         // Arrange
-        OrderedUrlRedirections urlRedirections = ["http://localhost"];
+        OrderedUrlTracker urlRedirections = ["http://localhost"];
         var context = HtmlContentTestsHelpers.CreateTestContext();
         var handler = new BrowserRedirectionResponseHandler(
             url: new Uri("http://localhost"),
@@ -111,7 +111,7 @@ public sealed class BrowserRedirectionResponseHandlerTest
     public void HandleResponseThrowsWhenMaxRedirectionsReached()
     {
         // Arrange
-        OrderedUrlRedirections urlRedirections = ["http://localhost"];
+        OrderedUrlTracker urlRedirections = ["http://localhost"];
         var maxRedirections = 1;
         var context = HtmlContentTestsHelpers.CreateTestContext();
         var handler = new BrowserRedirectionResponseHandler(

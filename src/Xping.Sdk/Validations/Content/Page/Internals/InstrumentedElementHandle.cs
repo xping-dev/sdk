@@ -8,7 +8,7 @@
 using System.Text.Json;
 using Microsoft.Playwright;
 using Xping.Sdk.Core.Common;
-using Xping.Sdk.Core.Components;
+using Xping.Sdk.Core.Session;
 using Xping.Sdk.Shared;
 
 namespace Xping.Sdk.Validations.Content.Page.Internals;
@@ -30,7 +30,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         var result = _handle.AsElement();
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -47,7 +47,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         var result = await _handle.BoundingBoxAsync().ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -67,7 +67,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         await _handle.CheckAsync().ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -85,7 +85,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         await _handle.ClickAsync().ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -100,7 +100,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         var result = await _handle.ContentFrameAsync().ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -120,7 +120,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         await _handle.DblClickAsync().ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -141,7 +141,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         await _handle.DispatchEventAsync(type, eventInit).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -165,7 +165,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         var result = await _handle.EvalOnSelectorAllAsync<T>(selector, expression, arg).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -191,7 +191,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         var result = await _handle.EvalOnSelectorAsync<T>(selector, expression, arg).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -217,7 +217,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         var result = await _handle.EvalOnSelectorAsync<JsonElement?>(selector, expression, arg).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -240,7 +240,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         var result = await _handle.EvaluateAsync<T>(expression, arg).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -263,7 +263,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         var result = await _handle.EvaluateAsync<JsonElement?>(expression, arg).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -286,7 +286,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         var result = await _handle.EvaluateHandleAsync(expression, arg).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -309,7 +309,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         await _handle.FillAsync(value, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -324,7 +324,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         await _handle.FocusAsync().ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -342,7 +342,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         var result = await _handle.GetAttributeAsync(name).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -364,7 +364,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
                 new PropertyBagKey(key: "Properties"),
                 new PropertyBagValue<string>(string.Join(";", result.Keys)));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -384,7 +384,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         var result = await _handle.GetPropertyAsync(propertyName).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -404,7 +404,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         await _handle.HoverAsync(options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -419,7 +419,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         var result = await _handle.InnerHTMLAsync().ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -436,7 +436,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         var result = await _handle.InnerTextAsync().ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -456,7 +456,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         var result = await _handle.InputValueAsync(options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -478,7 +478,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result.ToString()));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -500,7 +500,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result.ToString()));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -522,7 +522,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result.ToString()));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -544,7 +544,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result.ToString()));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -566,7 +566,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result.ToString()));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -588,7 +588,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result.ToString()));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -605,7 +605,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         var result = await _handle.JsonValueAsync<T>().ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -622,7 +622,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         var result = await _handle.OwnerFrameAsync().ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -645,7 +645,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         await _handle.PressAsync(key, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -668,7 +668,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
                 new PropertyBagKey(key: "Count"),
                 new PropertyBagValue<string>($"{result.Count}"));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -688,7 +688,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         var result = await _handle.QuerySelectorAsync(selector).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -708,7 +708,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         var result = await _handle.ScreenshotAsync(options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -728,7 +728,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         await _handle.ScrollIntoViewIfNeededAsync(options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -755,7 +755,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
                 new PropertyBagKey(key: "Options"),
                 new PropertyBagValue<string>(string.Join(";", result)));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -784,7 +784,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
                 new PropertyBagKey(key: "Options"),
                 new PropertyBagValue<string>(string.Join(";", result)));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -813,7 +813,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
                 new PropertyBagKey(key: "Options"),
                 new PropertyBagValue<string>(string.Join(";", result)));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -842,7 +842,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
                 new PropertyBagKey(key: "Options"),
                 new PropertyBagValue<string[]>([.. result]));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -871,7 +871,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
                 new PropertyBagKey(key: "Options"),
                 new PropertyBagValue<string[]>([.. result]));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -900,7 +900,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
                 new PropertyBagKey(key: "Options"),
                 new PropertyBagValue<string[]>([.. result]));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -920,7 +920,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         await _handle.SelectTextAsync(options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -941,7 +941,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         await _handle.SetCheckedAsync(checkedState, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -962,7 +962,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         await _handle.SetInputFilesAsync(files, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -983,7 +983,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         await _handle.SetInputFilesAsync(files, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1004,7 +1004,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         await _handle.SetInputFilesAsync(files, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1026,7 +1026,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         await _handle.SetInputFilesAsync(files, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1044,7 +1044,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         await _handle.TapAsync(options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1064,7 +1064,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
                 new PropertyBagKey(key: "TextContent"),
                 new PropertyBagValue<string>(result ?? "Null"));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1088,7 +1088,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         await _handle.TypeAsync(text, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1106,7 +1106,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         await _handle.UncheckAsync(options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1127,7 +1127,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         await _handle.WaitForElementStateAsync(state, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1149,7 +1149,7 @@ internal class InstrumentedElementHandle(TestContext context, IElementHandle han
 
         var result = await _handle.WaitForSelectorAsync(selector, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);

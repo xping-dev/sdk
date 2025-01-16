@@ -11,7 +11,7 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 using Microsoft.Playwright;
 using Xping.Sdk.Core.Common;
-using Xping.Sdk.Core.Components;
+using Xping.Sdk.Core.Session;
 using Xping.Sdk.Shared;
 
 namespace Xping.Sdk.Validations.Content.Page.Internals;
@@ -185,7 +185,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.AddInitScriptAsync(script, scriptPath);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -205,7 +205,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = await _page.AddScriptTagAsync(options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -225,7 +225,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = await _page.AddStyleTagAsync(options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -242,7 +242,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.BringToFrontAsync();
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -265,7 +265,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.CheckAsync(selector, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -285,7 +285,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.ClickAsync(selector, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -305,7 +305,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.CloseAsync(options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -327,7 +327,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>($"Content size: {result.Length}"));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -350,7 +350,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.DblClickAsync(selector, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -383,7 +383,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.DispatchEventAsync(selector, type, eventInit, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -409,7 +409,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.DragAndDropAsync(source, target, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -429,7 +429,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.EmulateMediaAsync(options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -455,7 +455,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.EvalOnSelectorAllAsync<T>(selector, expression, arg);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -481,7 +481,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.EvalOnSelectorAllAsync(selector, expression, arg);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -514,7 +514,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.EvalOnSelectorAsync<T>(selector, expression, arg, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -540,7 +540,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.EvalOnSelectorAsync(selector, expression, arg);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -563,7 +563,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.EvaluateAsync<T>(expression, arg);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -586,7 +586,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.EvaluateAsync(expression, arg);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -609,7 +609,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.EvaluateHandleAsync(expression, arg);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -635,7 +635,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.ExposeBindingAsync(name, callback, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -658,7 +658,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.ExposeBindingAsync(name, callback);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -681,7 +681,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.ExposeBindingAsync(name, callback);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -704,7 +704,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.ExposeBindingAsync(name, callback);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -727,7 +727,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.ExposeBindingAsync(name, callback);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -750,7 +750,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.ExposeBindingAsync(name, callback);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -773,7 +773,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.ExposeBindingAsync(name, callback);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -796,7 +796,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.ExposeBindingAsync(name, callback);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -819,7 +819,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.ExposeBindingAsync(name, callback);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -842,7 +842,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.ExposeFunctionAsync(name, callback);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -865,7 +865,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.ExposeFunctionAsync(name, callback);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -888,7 +888,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.ExposeFunctionAsync(name, callback);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -911,7 +911,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.ExposeFunctionAsync(name, callback);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -934,7 +934,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.ExposeFunctionAsync(name, callback);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -957,7 +957,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.ExposeFunctionAsync(name, callback);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -980,7 +980,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.ExposeFunctionAsync(name, callback);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1006,7 +1006,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.FillAsync(selector, value, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1029,7 +1029,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.FocusAsync(selector, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1049,7 +1049,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.Frame(name);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1069,7 +1069,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.FrameByUrl(url);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1089,7 +1089,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.FrameByUrl(url);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1109,7 +1109,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.FrameByUrl(url);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1129,7 +1129,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.FrameLocator(selector);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1160,7 +1160,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result ?? "Null"));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1183,7 +1183,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.GetByAltText(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1206,7 +1206,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.GetByAltText(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1229,7 +1229,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.GetByLabel(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1252,7 +1252,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.GetByLabel(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1275,7 +1275,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.GetByPlaceholder(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1298,7 +1298,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.GetByPlaceholder(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1321,7 +1321,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.GetByRole(role, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1341,7 +1341,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.GetByTestId(testId);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1361,7 +1361,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.GetByTestId(testId);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1381,7 +1381,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.GetByText(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1401,7 +1401,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.GetByText(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1424,7 +1424,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.GetByTitle(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1447,7 +1447,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.GetByTitle(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1467,7 +1467,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.GoBackAsync(options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1487,7 +1487,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.GoForwardAsync(options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1510,7 +1510,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.GotoAsync(url, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1533,7 +1533,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.HoverAsync(selector, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1561,7 +1561,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1589,7 +1589,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1617,7 +1617,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1645,7 +1645,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result.ToString()));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1673,7 +1673,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result.ToString()));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1701,7 +1701,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result.ToString()));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1729,7 +1729,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result.ToString()));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1757,7 +1757,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result.ToString()));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1785,7 +1785,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result.ToString()));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1808,7 +1808,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.Locator(selector, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1825,7 +1825,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = await _page.OpenerAsync().ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1842,7 +1842,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.OpenerAsync();
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1862,7 +1862,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.PdfAsync(options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1888,7 +1888,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.PressAsync(selector, key, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1908,7 +1908,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = await _page.QuerySelectorAllAsync(selector).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1931,7 +1931,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = await _page.QuerySelectorAsync(selector, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1951,7 +1951,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.ReloadAsync(options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1977,7 +1977,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.RouteAsync(url, handler, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2003,7 +2003,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.RouteAsync(url, handler, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2029,7 +2029,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.RouteAsync(url, handler, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2055,7 +2055,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.RouteAsync(url, handler, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2081,7 +2081,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.RouteAsync(url, handler, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2107,7 +2107,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.RouteAsync(url, handler, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2130,7 +2130,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.RouteFromHARAsync(har, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2155,7 +2155,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.RunAndWaitForConsoleMessageAsync(action, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2180,7 +2180,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.RunAndWaitForDownloadAsync(action, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2205,7 +2205,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.RunAndWaitForFileChooserAsync(action, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2231,7 +2231,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.RunAndWaitForNavigationAsync(action, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2254,7 +2254,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.RunAndWaitForPopupAsync(action, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2283,7 +2283,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.RunAndWaitForRequestAsync(action, urlOrPredicate, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2312,7 +2312,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.RunAndWaitForRequestAsync(action, urlOrPredicate, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2341,7 +2341,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.RunAndWaitForRequestAsync(action, urlOrPredicate, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2366,7 +2366,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.RunAndWaitForRequestFinishedAsync(action, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2395,7 +2395,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.RunAndWaitForResponseAsync(action, urlOrPredicate, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2424,7 +2424,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.RunAndWaitForResponseAsync(action, urlOrPredicate, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2453,7 +2453,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.RunAndWaitForResponseAsync(action, urlOrPredicate, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2478,7 +2478,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.RunAndWaitForWebSocketAsync(action, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2501,7 +2501,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.RunAndWaitForWorkerAsync(action, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2521,7 +2521,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.ScreenshotAsync(options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2555,7 +2555,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
                  new PropertyBagKey(key: "Options"),
                  new PropertyBagValue<string[]>([.. result]));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2591,7 +2591,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
                  new PropertyBagKey(key: "Options"),
                  new PropertyBagValue<string[]>([.. result]));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2625,7 +2625,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
                  new PropertyBagKey(key: "Options"),
                  new PropertyBagValue<string[]>([.. result]));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2659,7 +2659,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
                  new PropertyBagKey(key: "Options"),
                  new PropertyBagValue<string[]>([.. result]));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2697,7 +2697,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
                  new PropertyBagKey(key: "Options"),
                  new PropertyBagValue<string[]>([.. result]));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2731,7 +2731,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
                  new PropertyBagKey(key: "Options"),
                  new PropertyBagValue<string[]>([.. result]));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2757,7 +2757,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.SetCheckedAsync(selector, checkedState, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2780,7 +2780,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.SetContentAsync(html, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2800,7 +2800,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         _page.SetDefaultNavigationTimeout(timeout);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2818,7 +2818,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         _page.SetDefaultTimeout(timeout);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2836,7 +2836,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.SetExtraHTTPHeadersAsync(headers);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2862,7 +2862,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.SetInputFilesAsync(selector, files, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2891,7 +2891,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.SetInputFilesAsync(selector, files, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2917,7 +2917,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.SetInputFilesAsync(selector, files, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2947,7 +2947,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.SetInputFilesAsync(selector, files, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2970,7 +2970,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.SetViewportSizeAsync(width, height);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -2993,7 +2993,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.TapAsync(selector, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3021,7 +3021,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result ?? "Null"));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3043,7 +3043,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3070,7 +3070,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.TypeAsync(selector, text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3093,7 +3093,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.UncheckAsync(selector, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3113,7 +3113,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.UnrouteAllAsync(options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3136,7 +3136,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.UnrouteAsync(url, handler);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3159,7 +3159,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.UnrouteAsync(url, handler);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3182,7 +3182,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.UnrouteAsync(url, handler);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3205,7 +3205,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.UnrouteAsync(url, handler);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3228,7 +3228,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.UnrouteAsync(url, handler);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3251,7 +3251,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.UnrouteAsync(url, handler);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3271,7 +3271,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.WaitForConsoleMessageAsync(options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3291,7 +3291,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.WaitForDownloadAsync(options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3311,7 +3311,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.WaitForFileChooserAsync(options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3340,7 +3340,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.WaitForFunctionAsync(expression, arg, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3363,7 +3363,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.WaitForLoadStateAsync(state, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3384,7 +3384,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.WaitForNavigationAsync(options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3404,7 +3404,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = await _page.WaitForPopupAsync(options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3427,7 +3427,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.WaitForRequestAsync(urlOrPredicate, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3450,7 +3450,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.WaitForRequestAsync(urlOrPredicate, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3475,7 +3475,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.WaitForRequestAsync(urlOrPredicate, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3495,7 +3495,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.WaitForRequestFinishedAsync(options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3518,7 +3518,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.WaitForResponseAsync(urlOrPredicate, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3541,7 +3541,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.WaitForResponseAsync(urlOrPredicate, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3566,7 +3566,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.WaitForResponseAsync(urlOrPredicate, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3591,7 +3591,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = await _page.WaitForSelectorAsync(selector, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3611,7 +3611,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.WaitForTimeoutAsync(timeout);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3634,7 +3634,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.WaitForURLAsync(url, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3657,7 +3657,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.WaitForURLAsync(url, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3680,7 +3680,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.WaitForURLAsync(url, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3700,7 +3700,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.WaitForWebSocketAsync(options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3720,7 +3720,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         var result = _page.WaitForWorkerAsync(options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3737,7 +3737,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         await _page.RequestGCAsync().ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
 
         // Report the progress of this test step.
@@ -3760,7 +3760,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         await handler(locator).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3779,7 +3779,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
         // Assuming there is a method to remove locator handler in the _page object
         await _page.RemoveLocatorHandlerAsync(locator).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3800,7 +3800,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         await _page.RouteWebSocketAsync(url, handler).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3821,7 +3821,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         await _page.RouteWebSocketAsync(url, handler).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3842,7 +3842,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         await _page.RouteWebSocketAsync(url, handler).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -3864,7 +3864,7 @@ internal class InstrumentedPage(TestContext context, IPage page) : IPage
 
         await _page.AddLocatorHandlerAsync(locator, handler, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);

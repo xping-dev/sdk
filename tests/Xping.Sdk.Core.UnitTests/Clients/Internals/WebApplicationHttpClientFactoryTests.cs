@@ -7,8 +7,8 @@
 
 using Moq.Protected;
 using Moq;
-using Xping.Sdk.Core.Clients.Http;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Xping.Sdk.Core.HttpClients;
 
 namespace Xping.Sdk.Core.UnitTests.HttpClients.Internals;
 
@@ -25,7 +25,7 @@ public sealed class WebApplicationHttpClientFactoryTests
         _mockHandler = new Mock<HttpMessageHandler>();
         _client = new HttpClient(_mockHandler.Object);
         _clientFunction = (WebApplicationFactoryClientOptions options) => _client;
-        _factory = new WebApplicationHttpClientFactory(_clientFunction, new HttpClientFactoryConfiguration());
+        _factory = new WebApplicationHttpClientFactory(_clientFunction, new HttpClientFactoryOptions());
     }
 
     [TearDown]

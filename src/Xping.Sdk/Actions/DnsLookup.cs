@@ -8,6 +8,8 @@
 using System.Net;
 using Xping.Sdk.Core.Common;
 using Xping.Sdk.Core.Components;
+using Xping.Sdk.Core.Configuration;
+using Xping.Sdk.Core.Models;
 using Xping.Sdk.Core.Session;
 
 namespace Xping.Sdk.Actions;

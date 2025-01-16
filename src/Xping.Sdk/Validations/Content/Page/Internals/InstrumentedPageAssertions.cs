@@ -9,7 +9,7 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 using Microsoft.Playwright;
 using Xping.Sdk.Core.Common;
-using Xping.Sdk.Core.Components;
+using Xping.Sdk.Core.Session;
 using Xping.Sdk.Shared;
 
 namespace Xping.Sdk.Validations.Content.Page.Internals;
@@ -37,7 +37,7 @@ internal class InstrumentedPageAssertions(TestContext context, IPageAssertions p
 
         await _pageAssertions.ToHaveTitleAsync(titleOrRegExp, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -59,7 +59,7 @@ internal class InstrumentedPageAssertions(TestContext context, IPageAssertions p
 
         await _pageAssertions.ToHaveTitleAsync(titleOrRegExp, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -81,7 +81,7 @@ internal class InstrumentedPageAssertions(TestContext context, IPageAssertions p
 
         await _pageAssertions.ToHaveURLAsync(urlOrRegExp, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -103,7 +103,7 @@ internal class InstrumentedPageAssertions(TestContext context, IPageAssertions p
 
         await _pageAssertions.ToHaveURLAsync(urlOrRegExp, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);

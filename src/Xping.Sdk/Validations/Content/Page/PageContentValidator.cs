@@ -7,9 +7,9 @@
 
 using Microsoft.Playwright;
 using Xping.Sdk.Core.Clients.Browser;
-using Xping.Sdk.Core.Common;
-using Xping.Sdk.Core.Components;
+using Xping.Sdk.Core.Configuration;
 using Xping.Sdk.Core.Extensions;
+using Xping.Sdk.Core.Models;
 using Xping.Sdk.Core.Session;
 using Xping.Sdk.Shared;
 using Xping.Sdk.Validations.Content.Page.Internals;

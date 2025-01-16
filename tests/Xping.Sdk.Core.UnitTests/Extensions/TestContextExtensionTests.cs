@@ -7,8 +7,7 @@
 
 using Xping.Sdk.Core.Common;
 using Xping.Sdk.Core.Extensions;
-
-using TestContext = Xping.Sdk.Core.Components.TestContext;
+using TestContext = Xping.Sdk.Core.Session.TestContext;
 
 namespace Xping.Sdk.UnitTests.Extensions;
 

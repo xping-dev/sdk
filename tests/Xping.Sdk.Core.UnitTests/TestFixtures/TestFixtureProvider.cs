@@ -8,7 +8,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Moq;
-using Xping.Sdk.Core.DependencyInjection;
+using Xping.Sdk.Core.Extensions;
 using Xping.Sdk.Core.Session;
 
 namespace Xping.Sdk.UnitTests.TestFixtures;

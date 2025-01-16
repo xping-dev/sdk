@@ -7,10 +7,10 @@
 
 using System.Net.Http.Headers;
 using System.Text;
-using Xping.Sdk.Core.Clients.Browser;
-using Xping.Sdk.Core.Common;
 using Xping.Sdk.Core.Components;
 using Xping.Sdk.Core.Extensions;
+using Xping.Sdk.Core.HttpClients;
+using Xping.Sdk.Core.Models;
 using Xping.Sdk.Core.Session;
 
 namespace Xping.Sdk.Validations.Content;

@@ -9,9 +9,9 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.Serialization;
 using System.Text;
-using Xping.Sdk.Core.Clients.Browser;
-using Xping.Sdk.Core.Common;
 using Xping.Sdk.Core.Extensions;
+using Xping.Sdk.Core.HttpClients;
+using Xping.Sdk.Core.Models;
 using Xping.Sdk.Shared;
 
 namespace Xping.Sdk.Core.Session;
@@ -24,12 +24,12 @@ namespace Xping.Sdk.Core.Session;
 /// that execute different actions or validations on the URL, such as DNS lookup, HTTP request, HTML parsing, or 
 /// headless browser interaction. A test session has a start date and a duration that indicate when and how long the 
 /// testing took place. It also has a state that indicates the overall status of the test session, such as completed, 
-/// failed, or declined. A test session can store various data related to the test operation in a 
+/// not started, or declined. A test session can store various data related to the test operation in a 
 /// <see cref="PropertyBag{TValue}"/>, which is a dictionary of key-value pairs of serializable objects. 
 /// The property bag can contain data such as resolved IP addresses from DNS lookup, HTTP response headers, HTML 
 /// content, or captured screenshots from the headless browsers.
 /// A test session can be serialized and deserialized to and from stream, using the 
-/// <see cref="Serialization.TestSessionSerializer"/>. 
+/// <see cref="Utilities.Serialization.TestSessionSerializer"/>. 
 /// This enables the test session to be saved and loaded for further analysis and comparison, or transferred between 
 /// different machines or applications.
 /// </remarks>
@@ -38,9 +38,7 @@ namespace Xping.Sdk.Core.Session;
 public sealed class TestSession : 
     IDisposable, IAsyncDisposable, ISerializable, IDeserializationCallback, IEquatable<TestSession>
 {
-    private readonly Uri _url = null!;
-    private readonly DateTime _startDate;
-    private bool disposedValue;
+    private bool _disposedValue;
 
     /// <summary>
     /// Gets the unique identifier of the test session.
@@ -48,22 +46,18 @@ public sealed class TestSession :
     /// <value>
     /// A <see cref="Guid"/> value that represents the test session ID.
     /// </value>
-    public Guid Id { get; private set; }
+    public Guid Id { get; }
 
     /// <summary>
     /// Gets the upload token for the test session that links the TestAgent's results to the project configured on 
     /// the server.
     /// </summary>
-    public Guid UploadToken { get; internal set; }
+    public required Guid UploadToken { get; init; }
 
     /// <summary>
     /// A Uri object that represents the URL of the page being validated.
     /// </summary>
-    public required Uri Url
-    {
-        get => _url;
-        init => _url = value ?? throw new ArgumentNullException(nameof(Url), Errors.MissingUrlInTestSession);
-    }
+    public required Uri Url { get; init; }
 
     /// <summary>
     /// Gets the start date of the test session.
@@ -71,17 +65,7 @@ public sealed class TestSession :
     /// <value>
     /// A <see cref="DateTime"/> object that represents the start time of the test session.
     /// </value>
-    public required DateTime StartDate
-    {
-        get => _startDate;
-        init => _startDate = value.RequireCondition(
-            // To prevent a difference between StartDate and this condition, we subtract 60 sec from the present date.
-            // This difference can occur if StartDate is assigned just before 12:00 and this condition executes at
-            // 12:00. 
-            condition: date => date >= (DateTime.Today.ToUniversalTime() - TimeSpan.FromSeconds(60)),
-            parameterName: nameof(StartDate),
-            message: Errors.IncorrectStartDate);
-    }
+    public required DateTime StartDate { get; init; }
 
     /// <summary>
     /// Returns a read-only collection of the test steps executed within current test session.
@@ -151,8 +135,8 @@ public sealed class TestSession :
         ArgumentNullException.ThrowIfNull(info, nameof(info));
 
         Id = (Guid)info.GetValue(nameof(Id), typeof(Guid)).RequireNotNull(nameof(Id));
-        _url = (Uri)info.GetValue(nameof(Url), typeof(Uri)).RequireNotNull(nameof(Url));
-        _startDate = (DateTime)info.GetValue(nameof(StartDate), typeof(DateTime)).RequireNotNull(nameof(StartDate));
+        Url = (Uri)info.GetValue(nameof(Url), typeof(Uri)).RequireNotNull(nameof(Url));
+        StartDate = (DateTime)info.GetValue(nameof(StartDate), typeof(DateTime)).RequireNotNull(nameof(StartDate));
         Steps = info.GetValue(nameof(Steps), typeof(TestStep[])) as TestStep[] ?? [];
         State = Enum.Parse<TestSessionState>(
             value: (string)info.GetValue(nameof(State), typeof(string)).RequireNotNull(nameof(State)));
@@ -300,7 +284,7 @@ public sealed class TestSession :
 
     private void Dispose(bool disposing)
     {
-        if (!disposedValue)
+        if (!_disposedValue)
         {
             if (disposing)
             {
@@ -313,7 +297,7 @@ public sealed class TestSession :
                 browserResponseMessage?.Dispose();
             }
 
-            disposedValue = true;
+            _disposedValue = true;
         }
     }
 

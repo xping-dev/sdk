@@ -18,7 +18,7 @@ public class HomePageTests(TestAgent testAgent) : BaseTest(testAgent)
     [SetUp]
     public void SetUp()
     {
-        TestAgent.UseBrowserClient(options =>
+        TestAgent.UseBrowser(options =>
         {
             options.BrowserType = BrowserType.Chromium;
         });

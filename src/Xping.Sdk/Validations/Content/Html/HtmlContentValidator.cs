@@ -6,9 +6,9 @@
  */
 
 using Xping.Sdk.Actions;
-using Xping.Sdk.Core.Common;
-using Xping.Sdk.Core.Components;
+using Xping.Sdk.Core.Configuration;
 using Xping.Sdk.Core.Extensions;
+using Xping.Sdk.Core.Models;
 using Xping.Sdk.Core.Session;
 using Xping.Sdk.Shared;
 using Xping.Sdk.Validations.Content.Html.Internals;
@@ -20,8 +20,8 @@ namespace Xping.Sdk.Validations.Content.Html;
 /// </summary>
 /// <remarks>
 /// <note>
-/// The HtmlContentValidator component requires either the Browser <see cref="BrowserRequestSender"/> or HttpClient 
-/// <see cref="HttpClientRequestSender"/> component to be registered before it in the pipeline, because it depends on 
+/// The HtmlContentValidator component requires either the Browser <see cref="BrowserHandler"/> or HttpClient 
+/// <see cref="HttpClientHandler"/> component to be registered before it in the pipeline, because it depends on 
 /// the HTTP response results from these components.
 /// </note>
 /// </remarks>

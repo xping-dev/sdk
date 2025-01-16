@@ -7,7 +7,6 @@
 
 using System.Xml.XPath;
 using HtmlAgilityPack;
-using Xping.Sdk.Core.Components;
 using Xping.Sdk.Core.Session;
 using Xping.Sdk.Validations.Content.Html.Internals;
 using Xping.Sdk.Validations.TextUtils;

@@ -6,24 +6,22 @@
  */
 
 using Microsoft.Playwright;
-using Xping.Sdk.Core.Clients.Browser;
-using Xping.Sdk.Shared;
+using Xping.Sdk.Core.BrowserManagement;
+using Xping.Sdk.Core.Configuration;
 
 namespace Xping.Sdk.Actions.Internals;
 
-internal class BrowserHttpRequestInterceptor(BrowserConfiguration configuration) : IHttpRequestInterceptor
+internal class BrowserHttpRequestInterceptor(BrowserOptions options) : IHttpRequestInterceptor
 {
-    private readonly BrowserConfiguration _configuration = configuration.RequireNotNull(nameof(configuration));
-
     public async Task HandleAsync(IRoute route)
     {
-        var httpContent = _configuration.GetHttpContent();
-        var byteArray = httpContent != null ? await httpContent.ReadAsByteArrayAsync().ConfigureAwait(false) : null;
+        HttpContent? httpContent = options.GetHttpContent();
+        byte[]? byteArray = httpContent != null ? await httpContent.ReadAsByteArrayAsync() : null;
 
         // Modify the HTTP method here
         var routeOptions = new RouteContinueOptions
         {
-            Method = _configuration.GetHttpMethod().Method,
+            Method = options.GetHttpMethod().Method,
             PostData = byteArray
         };
 

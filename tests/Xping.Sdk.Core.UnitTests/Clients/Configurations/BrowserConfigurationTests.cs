@@ -7,7 +7,7 @@
 
 using Microsoft.Playwright;
 using Xping.Sdk.Core.Clients.Browser;
-using Xping.Sdk.Core.Common;
+using Xping.Sdk.Core.Models;
 
 namespace Xping.Sdk.Core.UnitTests.HttpClients.Configurations;
 
@@ -23,7 +23,7 @@ public sealed class BrowserConfigurationTests
             Longitude = 90,
             Accuracy = 100
         };
-        var browserConfiguration = new BrowserConfiguration();
+        var browserConfiguration = new BrowserClientOptions();
 
         // Act
         browserConfiguration.SetGeolocation(geolocation);
@@ -44,7 +44,7 @@ public sealed class BrowserConfigurationTests
             Longitude = 90,
             Accuracy = 100
         };
-        var browserConfiguration = new BrowserConfiguration();
+        var browserConfiguration = new BrowserClientOptions();
         browserConfiguration.SetGeolocation(geolocation);
 
         // Act
@@ -64,7 +64,7 @@ public sealed class BrowserConfigurationTests
             Longitude = 90,
             Accuracy = 100
         };
-        var browserConfiguration = new BrowserConfiguration();
+        var browserConfiguration = new BrowserClientOptions();
         browserConfiguration.SetGeolocation(geolocation);
 
         // Act

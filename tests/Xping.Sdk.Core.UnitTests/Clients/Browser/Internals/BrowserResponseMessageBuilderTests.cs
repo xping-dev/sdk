@@ -8,7 +8,7 @@
 using System.Net;
 using Microsoft.Playwright;
 using Moq;
-using Xping.Sdk.Core.Clients.Browser.Internals;
+using Xping.Sdk.Core.HttpClients.Internals;
 
 namespace Xping.Sdk.Core.UnitTests.Clients.Browser.Internals;
 

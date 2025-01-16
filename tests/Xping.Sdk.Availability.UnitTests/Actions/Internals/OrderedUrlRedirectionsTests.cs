@@ -15,7 +15,7 @@ public sealed class OrderedUrlRedirectionsTests
     public void AddAcceptsNullValue()
     {
         // Arrange
-        OrderedUrlRedirections redirections = [];
+        OrderedUrlTracker redirections = [];
 
         // Act
         bool result = redirections.Add(null);
@@ -29,7 +29,7 @@ public sealed class OrderedUrlRedirectionsTests
     public void AddReturnsTrueWhenUrlInserted()
     {
         // Arrange
-        OrderedUrlRedirections redirections = [];
+        OrderedUrlTracker redirections = [];
 
         // Act
         bool result = redirections.Add("http://localhost");
@@ -43,7 +43,7 @@ public sealed class OrderedUrlRedirectionsTests
     public void AddDoesNotInsertDuplicatedUrls()
     {
         // Arrange
-        OrderedUrlRedirections redirections = [];
+        OrderedUrlTracker redirections = [];
 
         // Act
         redirections.Add("http://localhost");
@@ -59,7 +59,7 @@ public sealed class OrderedUrlRedirectionsTests
     {
         // Arrange
         List<string> urls = ["http://localhost/A", "http://localhost/B", "http://localhost/C"];
-        OrderedUrlRedirections redirections = [];
+        OrderedUrlTracker redirections = [];
 
         // Act
         redirections.Add(urls[0]);
@@ -78,7 +78,7 @@ public sealed class OrderedUrlRedirectionsTests
     public void FindLastMatchingItemReturnsNullWhenNoItems()
     {
         // Arrange
-        OrderedUrlRedirections redirections = [];
+        OrderedUrlTracker redirections = [];
 
         // Act
         var result = redirections.FindLastMatchingItem(url => url != null);
@@ -91,7 +91,7 @@ public sealed class OrderedUrlRedirectionsTests
     public void FindLastMatchingItemReturnsNullWhenNotMatched()
     {
         // Arrange
-        OrderedUrlRedirections redirections = ["http://localhost/A", "http://localhost/B"];
+        OrderedUrlTracker redirections = ["http://localhost/A", "http://localhost/B"];
 
         // Act
         var result = redirections.FindLastMatchingItem(url => url == "http://localhost/C");
@@ -104,7 +104,7 @@ public sealed class OrderedUrlRedirectionsTests
     public void FindLastMatchingItemReturnsLastItemWhenMatched()
     {
         // Arrange
-        OrderedUrlRedirections redirections = ["http://localhost/A", "http://localhost/B"];
+        OrderedUrlTracker redirections = ["http://localhost/A", "http://localhost/B"];
 
         // Act
         var result = redirections.FindLastMatchingItem(url => url != null);
@@ -117,7 +117,7 @@ public sealed class OrderedUrlRedirectionsTests
     public void ClearRemovesAllItems()
     {
         // Arrange
-        OrderedUrlRedirections redirections = ["http://localhost/A", "http://localhost/B"];
+        OrderedUrlTracker redirections = ["http://localhost/A", "http://localhost/B"];
 
         // Act
         redirections.Clear();

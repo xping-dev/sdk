@@ -9,7 +9,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using Xping.Sdk.Core.Common;
-using Xping.Sdk.Core.Components;
+using Xping.Sdk.Core.Session;
 using Xping.Sdk.Validations.Content.Html.Internals.Selectors;
 using Xping.Sdk.Validations.TextUtils;
 using Xping.Sdk.Validations.TextUtils.Internals;
@@ -60,7 +60,7 @@ internal class HtmlAssertions(IHtmlContent content) : IHtmlAssertions
                 $"none matching this criteria. This error occurred during the validation of HTML data.");
         }
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -107,7 +107,7 @@ internal class HtmlAssertions(IHtmlContent content) : IHtmlAssertions
                 $"none matching this criteria. This error occurred during the validation of HTML data.");
         }
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -158,7 +158,7 @@ internal class HtmlAssertions(IHtmlContent content) : IHtmlAssertions
                 $"matching this criteria. This error occurred during the validation of HTML data.");
         }
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -205,7 +205,7 @@ internal class HtmlAssertions(IHtmlContent content) : IHtmlAssertions
                 $"none matching this criteria. This error occurred during the validation of HTML data.");
         }
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -253,7 +253,7 @@ internal class HtmlAssertions(IHtmlContent content) : IHtmlAssertions
                 $"matching this criteria. This error occurred during the validation of HTML data.");
         }
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -297,7 +297,7 @@ internal class HtmlAssertions(IHtmlContent content) : IHtmlAssertions
                 $"matching this criteria. This error occurred during the validation of HTML data.");
         }
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -328,7 +328,7 @@ internal class HtmlAssertions(IHtmlContent content) : IHtmlAssertions
                 $"the actual size was {byteCount} bytes. This error occurred during the validation of HTML data.");
         }
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -371,7 +371,7 @@ internal class HtmlAssertions(IHtmlContent content) : IHtmlAssertions
                 $"This error occurred during the validation of HTML data.");
         }
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -422,7 +422,7 @@ internal class HtmlAssertions(IHtmlContent content) : IHtmlAssertions
                 $", but found none matching this criteria. This error occurred during the validation of HTML data.");
         }
         
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -482,7 +482,7 @@ internal class HtmlAssertions(IHtmlContent content) : IHtmlAssertions
                 $"HTML data.");
         }
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -536,7 +536,7 @@ internal class HtmlAssertions(IHtmlContent content) : IHtmlAssertions
                 $"inner text was \"{actualText}\". This error occurred during the validation of HTML data.");
         }
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);

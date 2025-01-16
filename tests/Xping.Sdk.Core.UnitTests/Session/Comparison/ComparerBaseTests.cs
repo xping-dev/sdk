@@ -5,9 +5,9 @@
  * License: [MIT]
  */
 
-using Xping.Sdk.Core.Common;
+using Xping.Sdk.Core.Models;
 using Xping.Sdk.Core.Session;
-using Xping.Sdk.Core.Session.Comparison;
+using Xping.Sdk.Core.Utilities.Comparison;
 
 namespace Xping.Sdk.Core.UnitTests.Session.Comparison;
 

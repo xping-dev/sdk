@@ -6,10 +6,13 @@
  */
 
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Xping.Sdk.Core.Components;
+using Xping.Sdk.Core.Configuration;
+using Xping.Sdk.Core.Extensions;
+using Xping.Sdk.Core.Services;
 using Xping.Sdk.Core.Session;
-using Xping.Sdk.Core.Common;
-using Xping.Sdk.Core.Session.Collector;
+using static Xping.Sdk.Core.Models.Errors;
 
 namespace Xping.Sdk.Core;
 
@@ -32,7 +35,7 @@ namespace Xping.Sdk.Core;
 /// Please note that the TestAgent class is designed to be used with a dependency injection system and should not be 
 /// instantiated by the user directly. Instead, the user should register the TestAgent class in the dependency injection 
 /// container using one of the supported methods, such as the 
-/// <see cref="DependencyInjection.DependencyInjectionExtension.AddTestAgent(IServiceCollection)"/> extension method for 
+/// <see cref="DependencyInjectionExtension.AddTestAgent(IServiceCollection)"/> extension method for 
 /// the IServiceCollection interface. This way, the TestAgent class can be resolved and injected into other classes that 
 /// depend on it.
 /// </note>
@@ -42,9 +45,9 @@ namespace Xping.Sdk.Core;
 ///     .ConfigureServices((services) =>
 ///     {
 ///         services.AddHttpClientFactory();
-///         services.AddTestAgent(agent =>
+///         services.AddTestAgent(options =>
 ///         {
-///             agent.UploadToken = "--- Your Upload Token ---";
+///             options.ApiKey = "--- Your API Key ---";
 ///         });
 ///     });
 /// </code>
@@ -57,27 +60,35 @@ public class TestAgent : IDisposable
     private Guid _uploadToken;
 
     private readonly IServiceProvider _serviceProvider;
+    private readonly ITestSessionUploader _sessionUploader;
+    private readonly ITestSessionBuilderFactory _sessionBuilderFactory;
+    private readonly ITestContextFactory _contextFactory;
 
     // Lazy initialization of a shared pipeline container that is thread-safe. This ensures that only a single instance
     // of Pipeline is created and shared across all threads, and it is only created when it is first accessed and
     // property InstantiatePerThread is disabled.
     private readonly Lazy<Pipeline> _sharedContainer = new(valueFactory: () =>
     {
-        return new Pipeline($"Pipeline#Shared");
+        return new Pipeline($"Pipeline:Shared");
     }, isThreadSafe: true);
 
     // ThreadLocal is used to provide a separate instance of the pipeline container for each thread.
     private readonly ThreadLocal<Pipeline> _container = new(valueFactory: () =>
     {
         // Initialize the container for each thread.
-        return new Pipeline($"Pipeline#Thread[{Thread.CurrentThread.Name}:{Environment.CurrentManagedThreadId}]");
-    }); 
+        return new Pipeline($"Pipeline:Thread[{Thread.CurrentThread.Name}]:#{Environment.CurrentManagedThreadId}");
+    });
 
     /// <summary>
     /// Controls whether the TestAgent's pipeline container object should be instantiated for each thread separately.
     /// When set to true, each thread will have its own instance of the pipeline container. Default is <c>true</c>.
     /// </summary>
     public bool InstantiatePerThread { get; set; } = true;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public IServiceProvider ServiceProvider => _serviceProvider;
 
     /// <summary>
     /// Gets or sets the upload token that links the TestAgent's results to the project configured on the server.
@@ -113,10 +124,28 @@ public class TestAgent : IDisposable
     /// <summary>
     /// Initializes new instance of the TestAgent class. For internal use only.
     /// </summary>
-    /// <param name="serviceProvider">An instance object of a mechanism for retrieving a service object.</param>
-    internal TestAgent(IServiceProvider serviceProvider)
+    /// <param name="serviceProvider"></param>
+    /// <param name="options"></param>
+    /// <param name="sessionBuilderFactory"></param>
+    /// <param name="sessionUploader"></param>
+    /// <param name="contextFactory"></param>
+    internal TestAgent(
+        IServiceProvider serviceProvider,
+        ITestSessionUploader sessionUploader,
+        ITestSessionBuilderFactory sessionBuilderFactory,
+        ITestContextFactory contextFactory,
+        IOptions<TestAgentOptions>? options)
     {
         _serviceProvider = serviceProvider;
+        _sessionUploader = sessionUploader;
+        _sessionBuilderFactory = sessionBuilderFactory;
+        _contextFactory = contextFactory;
+
+        if (options?.Value != null)
+        {
+            UploadToken = options.Value.UploadToken;
+            InstantiatePerThread = options.Value.InstantiatePerThread;
+        }
     }
 
     /// <summary>
@@ -139,72 +168,44 @@ public class TestAgent : IDisposable
     {
         ArgumentNullException.ThrowIfNull(url);
 
-        using var instrumentation = new InstrumentationTimer(startStopwatch: false);
-        var context = CreateTestContext(instrumentation);
-        var sessionBuilder = context.SessionBuilder;
+        var sessionBuilder = _sessionBuilderFactory
+            .CreateSessionBuilder()
+            .BuildWith(_uploadToken)
+            .BuildWith(url)
+            .BuildWith(startDate: DateTime.UtcNow);
+
+        var context = _contextFactory.CreateInstrumentedContext(url, settings, sessionBuilder);
 
         try
         {
             // Update context with currently executing component.
             context.UpdateExecutionContext(Container);
 
-            // Initiate the test session by recording its start time, the URL of the page being validated,
-            // and associating it with the current TestContext responsible for maintaining the state of the test
-            // execution.
-            sessionBuilder.Initiate(url, startDate: DateTime.UtcNow, context);
-
             // Execute test operation on the current thread's container or shared instance based on
             // `InstantiatePerThread` property configuration.
             await Container
-                .HandleAsync(url, settings ?? new TestSettings(), context, _serviceProvider, cancellationToken)
+                .HandleAsync(context, cancellationToken)
                 .ConfigureAwait(false);
+
+            // 
+            context.Clean();
         }
         catch (Exception ex)
         {
-            sessionBuilder.Build(agent: this, error: Errors.ExceptionError(ex));
+            sessionBuilder.BuildWith(ExceptionError(ex));
         }
 
-        TestSession testSession = sessionBuilder.GetTestSession(uploadToken: _uploadToken);
+        TestSession testSession = sessionBuilder.Build();
         return testSession;
     }
 
     /// <summary>
-    /// Asynchronously probes a test components registered in the current instance of the Container using the specified 
-    /// URL and settings.
-    /// </summary>
-    /// <param name="url">A Uri object that represents the URL of the page being validated.</param>
-    /// <param name="settings">A <see cref="TestSettings"/> object that contains the settings for the test.</param>
-    /// <param name="cancellationToken">An optional CancellationToken object that can be used to cancel the 
-    /// validation process.</param>
-    /// <returns>A task that represents the asynchronous operation. The task result contains a boolean value indicating 
-    /// whether the probe was successful or not.</returns>
-    public async Task<bool> ProbeAsync(
-        Uri url,
-        TestSettings settings,
-        CancellationToken cancellationToken = default)
-    {
-        ArgumentNullException.ThrowIfNull(url);
-        ArgumentNullException.ThrowIfNull(settings);
-
-        try
-        {
-            // Execute test operation by invoking the ProbeAsync method of the Container class.
-            return await Container
-                .ProbeAsync(url, settings, _serviceProvider, cancellationToken)
-                .ConfigureAwait(false);
-        }
-        catch (Exception)
-        {
-            return false;
-        }
-    }
-
-    /// <summary>
-    /// Clean up tests components from the container.
+    /// Cleans up test components from the container.
     /// </summary>
     /// <remarks>
     /// This method is called to clean up the test components. It ensures that the components collection is emptied, 
-    /// preventing cross-contamination of state between tests.
+    /// preventing cross-contamination of state between tests. If <see cref="InstantiatePerThread"/> is enabled, this 
+    /// method only cleans the container that has been instantiated on the calling thread.
     /// </remarks>
     public void Cleanup()
     {
@@ -231,37 +232,20 @@ public class TestAgent : IDisposable
         {
             if (disposing)
             {
-                Cleanup();
+                foreach (var pipeline in _container.Values)
+                {
+                    pipeline.Clear();
+                }
+
+                if (_sharedContainer.IsValueCreated)
+                {
+                    _sharedContainer.Value.Clear();
+                }
+
                 _container.Dispose();
             }
 
             _disposedValue = true;
         }
-    }
-
-    /// <summary>
-    /// Creates a new <see cref="TestContext"/> instance using the provided instrumentation and services from the 
-    /// service provider.
-    /// </summary>
-    /// <remarks>
-    /// This method initializes a <see cref="TestContext"/> object, which encapsulates the environment in which a test 
-    /// runs, providing access to services such as session building and progress reporting.
-    /// </remarks>
-    /// <param name="instrumentation">
-    /// An IInstrumentation object that provides mechanisms for monitoring and interacting with the test execution 
-    /// process.
-    /// </param>
-    /// <returns>
-    /// A <see cref="TestContext"/> object configured with the necessary services and instrumentation for test 
-    /// execution.
-    /// </returns>
-    protected virtual TestContext CreateTestContext(IInstrumentation instrumentation)
-    {
-        var context = new TestContext(
-            sessionBuilder: _serviceProvider.GetRequiredService<ITestSessionBuilder>(),
-            instrumentation: instrumentation,
-            progress: _serviceProvider.GetService<IProgress<TestStep>>());
-
-        return context;
     }
 }

@@ -10,8 +10,8 @@ using System.Net;
 using System.Threading;
 using Microsoft.AspNetCore.Components;
 using Moq;
-using Xping.Sdk.Core.Common;
 using Xping.Sdk.Core.Components;
+using Xping.Sdk.Core.Models;
 using Xping.Sdk.Shared;
 
 namespace Xping.Sdk.Core.UnitTests.Common;

@@ -11,15 +11,16 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Net.Http.Headers;
 using Xping.Sdk.Core.Extensions;
 using Xping.Sdk.Core;
-using Xping.Sdk.Core.Common;
 using Xping.Sdk.Core.Components;
 using Xping.Sdk.Core.Session;
 using Xping.Sdk.IntegrationTests.HttpServer;
 using Xping.Sdk.IntegrationTests.TestFixtures;
 using System.Net.Http.Json;
-using Xping.Sdk.Core.Clients.Browser;
 using System.Diagnostics;
 using Xping.Sdk.Actions;
+using Xping.Sdk.Core.Configuration;
+using Xping.Sdk.Core.Models;
+using Xping.Sdk.Core.HttpClients;
 
 namespace Xping.Sdk.IntegrationTests;
 
@@ -134,7 +135,7 @@ public class BrowserTestAgentTests(IServiceProvider serviceProvider)
         // Arrange
         const string userAgent = "Chrome/51.0.2704.64 Safari/537.36";
 
-        var configuration = new BrowserConfiguration();
+        var configuration = new BrowserOptions();
         var httpRequestHeaders = new Dictionary<string, IEnumerable<string>>
         {
             { HeaderNames.UserAgent, [userAgent] }
@@ -168,7 +169,7 @@ public class BrowserTestAgentTests(IServiceProvider serviceProvider)
         const string customKey = "custom-key";
         const string customValue = "This is custome header";
 
-        var configuration = new BrowserConfiguration();
+        var configuration = new BrowserOptions();
         var httpRequestHeaders = new Dictionary<string, IEnumerable<string>>
         {
             { customKey, [customValue] }
@@ -218,7 +219,7 @@ public class BrowserTestAgentTests(IServiceProvider serviceProvider)
         // Arrange
         var httpMethod = new HttpMethod(method);
 
-        var configuration = new BrowserConfiguration();
+        var configuration = new BrowserOptions();
         configuration.SetHttpMethod(httpMethod);
 
         bool requestReceived = false;
@@ -244,7 +245,7 @@ public class BrowserTestAgentTests(IServiceProvider serviceProvider)
     public async Task HeadlessBrowserRequestComponentUsesConfiguredHttpContent()
     {
         // Arrange
-        var configuration = new BrowserConfiguration();
+        var configuration = new BrowserOptions();
         using var stringContent = new StringContent("HttpContentData");
         configuration.SetHttpContent(stringContent);
 
@@ -275,7 +276,7 @@ public class BrowserTestAgentTests(IServiceProvider serviceProvider)
     public async Task HeadlessBrowserRequestComponentUsesConfiguredJsonContent()
     {
         // Arrange
-        var configuration = new BrowserConfiguration();
+        var configuration = new BrowserOptions();
         using var jsonContent = JsonContent.Create("{\"name\":\"John\", \"age\":30, \"car\":null}");
         configuration.SetHttpContent(jsonContent);
 
@@ -306,7 +307,7 @@ public class BrowserTestAgentTests(IServiceProvider serviceProvider)
     public async Task HeadlessBrowserRequestComponentDoesNotUseContentTypeWhenNotConfigured()
     {
         // Arrange
-        var configuration = new BrowserConfiguration();
+        var configuration = new BrowserOptions();
         using var stringContent = new StringContent("HttpContentData");
         configuration.SetHttpContent(stringContent, setContentHeaders: false);
 
@@ -337,7 +338,7 @@ public class BrowserTestAgentTests(IServiceProvider serviceProvider)
     public async Task HeadlessBrowserRequestComponentDoesNotUsesHttpContentWhenNotConfigured()
     {
         // Arrange
-        var configuration = new BrowserConfiguration();
+        var configuration = new BrowserOptions();
 
         bool requestReceived = false;
 
@@ -367,7 +368,7 @@ public class BrowserTestAgentTests(IServiceProvider serviceProvider)
             "Error 1000: Message: Timeout 1000ms exceeded.\nCall log:\n  - navigating to \"http://localhost:8080/\", " +
             "waiting until \"load\"";
 
-        var configuration = new BrowserConfiguration
+        var configuration = new BrowserOptions
         {
             HttpRequestTimeout = TimeSpan.FromSeconds(1)
         };
@@ -398,7 +399,7 @@ public class BrowserTestAgentTests(IServiceProvider serviceProvider)
             ResponseBuilder, configuration: configuration).ConfigureAwait(false);
 
         var failedStep = session.Steps.FirstOrDefault(step =>
-            step.Name.StartsWith(nameof(BrowserRequestSender), StringComparison.InvariantCulture) &&
+            step.Name.StartsWith(nameof(BrowserHandler), StringComparison.InvariantCulture) &&
             step.Result == TestStepResult.Failed);
 
         // Assert
@@ -459,7 +460,7 @@ public class BrowserTestAgentTests(IServiceProvider serviceProvider)
             requestReceived: (request) => { },
             uriPrefixes: [new Uri(destinationServerAddress)]);
 
-        var configuration = new BrowserConfiguration
+        var configuration = new BrowserOptions
         {
             FollowHttpRedirectionResponses = true
         };
@@ -479,7 +480,7 @@ public class BrowserTestAgentTests(IServiceProvider serviceProvider)
         {
             // Assert
             var httpRequestSteps = session.Steps.Where(s =>
-                s.Name.StartsWith(nameof(BrowserRequestSender), StringComparison.InvariantCulture)).ToList();
+                s.Name.StartsWith(nameof(BrowserHandler), StringComparison.InvariantCulture)).ToList();
             var redirectionStep = httpRequestSteps.First();
             var destinationStep = httpRequestSteps.Last();
 
@@ -510,7 +511,7 @@ public class BrowserTestAgentTests(IServiceProvider serviceProvider)
         // The redirect URL is on the same server as the original URL
         string destinationServerAddress = InMemoryHttpServer.GetTestServerAddress().AbsoluteUri;
 
-        var configuration = new BrowserConfiguration
+        var configuration = new BrowserOptions
         {
             FollowHttpRedirectionResponses = true
         };
@@ -526,7 +527,7 @@ public class BrowserTestAgentTests(IServiceProvider serviceProvider)
 
         // Assert
         var httpRequestSteps = session.Steps.Where(s =>
-            s.Name.StartsWith(nameof(BrowserRequestSender), StringComparison.InvariantCulture)).ToList();
+            s.Name.StartsWith(nameof(BrowserHandler), StringComparison.InvariantCulture)).ToList();
         var redirectionStep = httpRequestSteps.First();
         var destinationStep = httpRequestSteps.Last();
 
@@ -556,7 +557,7 @@ public class BrowserTestAgentTests(IServiceProvider serviceProvider)
 
         // The redirect URL is on the same server as the original URL
         string destinationServerAddress = InMemoryHttpServer.GetTestServerAddress().AbsoluteUri;
-        var configuration = new BrowserConfiguration
+        var configuration = new BrowserOptions
         {
             FollowHttpRedirectionResponses = true
         };
@@ -592,7 +593,7 @@ public class BrowserTestAgentTests(IServiceProvider serviceProvider)
             requestReceived: (request) => { },
             uriPrefixes: [new Uri(destinationServerAddress)]);
 
-        var configuration = new BrowserConfiguration
+        var configuration = new BrowserOptions
         {
             FollowHttpRedirectionResponses = true,
             MaxRedirections = 1
@@ -611,7 +612,7 @@ public class BrowserTestAgentTests(IServiceProvider serviceProvider)
 
         // Assert
         var httpRequestSteps = session.Steps.Where(s =>
-            s.Name.StartsWith(nameof(BrowserRequestSender), StringComparison.InvariantCulture)).ToList();
+            s.Name.StartsWith(nameof(BrowserHandler), StringComparison.InvariantCulture)).ToList();
         var destinationStep = httpRequestSteps.Last();
 
         Assert.Multiple(() =>
@@ -662,7 +663,7 @@ public class BrowserTestAgentTests(IServiceProvider serviceProvider)
 
         // Assert
         var httpRequestSteps = session.Steps.Where(s =>
-            s.Name.StartsWith(nameof(BrowserRequestSender), StringComparison.InvariantCulture)).ToList();
+            s.Name.StartsWith(nameof(BrowserHandler), StringComparison.InvariantCulture)).ToList();
         var destinationStep = httpRequestSteps.Last();
 
         var destinationStatusCode = destinationStep.PropertyBag!.GetProperty<PropertyBagValue<string>>(
@@ -687,7 +688,7 @@ public class BrowserTestAgentTests(IServiceProvider serviceProvider)
     {
         // Arrange
         string destinationServerAddress = "http://localhost:8080/destination";
-        var configuration = new BrowserConfiguration
+        var configuration = new BrowserOptions
         {
             FollowHttpRedirectionResponses = false
         };
@@ -703,7 +704,7 @@ public class BrowserTestAgentTests(IServiceProvider serviceProvider)
 
         // Assert
         var httpRequestSteps = session.Steps.Where(s =>
-            s.Name.StartsWith(nameof(BrowserRequestSender), StringComparison.InvariantCulture)).ToList();
+            s.Name.StartsWith(nameof(BrowserHandler), StringComparison.InvariantCulture)).ToList();
 
         Assert.That(httpRequestSteps, Has.Count.EqualTo(1));
     }
@@ -713,7 +714,7 @@ public class BrowserTestAgentTests(IServiceProvider serviceProvider)
         Action<HttpListenerRequest>? requestReceived = null,
         TestComponent? component = null,
         TestSettings? settings = null,
-        BrowserConfiguration? configuration = null,
+        BrowserOptions? configuration = null,
         CancellationToken cancellationToken = default)
     {
         static void RequestReceived(HttpListenerRequest request) { };
@@ -724,7 +725,7 @@ public class BrowserTestAgentTests(IServiceProvider serviceProvider)
             cancellationToken);
 
         var testAgent = _serviceProvider.GetRequiredKeyedService<TestAgent>(serviceKey: "BrowserClient");
-        testAgent.Replace(new BrowserRequestSender(configuration ?? new BrowserConfiguration()));
+        testAgent.Replace(new BrowserRequestHandler(configuration ?? new BrowserOptions()));
 
         if (component != null)
         {

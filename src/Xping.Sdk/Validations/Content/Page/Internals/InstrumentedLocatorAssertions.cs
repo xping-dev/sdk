@@ -10,7 +10,7 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 using Microsoft.Playwright;
 using Xping.Sdk.Core.Common;
-using Xping.Sdk.Core.Components;
+using Xping.Sdk.Core.Session;
 using Xping.Sdk.Shared;
 
 namespace Xping.Sdk.Validations.Content.Page.Internals;
@@ -37,7 +37,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToBeAttachedAsync(options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -56,7 +56,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToBeCheckedAsync(options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -75,7 +75,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToBeDisabledAsync(options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -94,7 +94,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToBeEditableAsync(options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -113,7 +113,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToBeEmptyAsync(options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -132,7 +132,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToBeEnabledAsync(options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -151,7 +151,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToBeFocusedAsync(options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -170,7 +170,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToBeHiddenAsync(options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -189,7 +189,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToBeInViewportAsync(options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -208,7 +208,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToBeVisibleAsync(options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -230,7 +230,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToContainTextAsync(expected, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -252,7 +252,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToContainTextAsync(expected, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -276,7 +276,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToContainTextAsync(values, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -300,7 +300,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToContainTextAsync(values, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -323,7 +323,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveAccessibleDescriptionAsync(description, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -346,7 +346,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveAccessibleDescriptionAsync(description, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -369,7 +369,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveAccessibleNameAsync(name, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -392,7 +392,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveAccessibleNameAsync(name, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -418,7 +418,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveAttributeAsync(name, value, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -443,7 +443,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveAttributeAsync(name, value, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -465,7 +465,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveClassAsync(expected, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -487,7 +487,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveClassAsync(expected, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -510,7 +510,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveClassAsync(values, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -533,7 +533,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveClassAsync(values, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -555,7 +555,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveCountAsync(count, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -580,7 +580,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveCSSAsync(name, value, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -605,7 +605,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveCSSAsync(name, value, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -627,7 +627,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveIdAsync(id, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -649,7 +649,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveIdAsync(id, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -675,7 +675,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveJSPropertyAsync(name, value, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -697,7 +697,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveRoleAsync(role, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -719,7 +719,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveTextAsync(expected, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -741,7 +741,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveTextAsync(expected, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -764,7 +764,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveTextAsync(values, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -787,7 +787,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveTextAsync(values, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -809,7 +809,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveValueAsync(value, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -831,7 +831,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveValueAsync(value, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -854,7 +854,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveValuesAsync(enumerable, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -877,7 +877,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToHaveValuesAsync(enumerable, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -900,7 +900,7 @@ internal class InstrumentedLocatorAssertions(TestContext context, ILocatorAssert
 
         await _locatorAssertions.ToMatchAriaSnapshotAsync(expected, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);

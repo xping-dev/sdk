@@ -5,9 +5,9 @@
  * License: [MIT]
  */
 
-using Xping.Sdk.Shared;
-using Xping.Sdk.Core.Common;
 using System.Runtime.Serialization;
+using Xping.Sdk.Core.Models;
+using Xping.Sdk.Shared;
 
 namespace Xping.Sdk.Core.Session;
 
@@ -22,7 +22,6 @@ namespace Xping.Sdk.Core.Session;
 public sealed record TestStep : ISerializable
 {
     private readonly string _name = null!;
-    private readonly DateTime _startDate;
 
     /// <summary>
     /// Gets the name of the test step.
@@ -30,7 +29,7 @@ public sealed record TestStep : ISerializable
     public required string Name
     {
         get => _name;
-        init => _name = value.RequireNotNull(nameof(Name));
+        init => _name = value.RequireNotNullOrWhiteSpace(nameof(Name));
     }
 
     /// <summary>
@@ -48,17 +47,7 @@ public sealed record TestStep : ISerializable
     /// <value>
     /// A <see cref="DateTime"/> object that represents the start time of the test step.
     /// </value>
-    public required DateTime StartDate
-    {
-        get => _startDate;
-        init => _startDate = value.RequireCondition(
-            // To prevent a difference between StartDate and this condition, we subtract 60 sec from the present date.
-            // This difference can occur if StartDate is assigned just before 12:00 and this condition executes at
-            // 12:00. 
-            condition: date => date >= (DateTime.Today.ToUniversalTime() - TimeSpan.FromSeconds(60)),
-            parameterName: nameof(StartDate),
-            message: Errors.IncorrectStartDate);
-    }
+    public required DateTime StartDate { get; init; }
 
     /// <summary>
     /// Gets or sets the duration of the test step.
@@ -85,19 +74,11 @@ public sealed record TestStep : ISerializable
     public required TestStepResult Result { get; init; }
 
     /// <summary>
-    /// Gets or sets the property bag of the test session.
+    /// Gets or sets the property bag of this test step. This property bag should contain data related to this specific 
+    /// test step execution. On serialization, this data is also serialized, so this property bag should rather include 
+    /// built-in types rather than complex objects which won't be (de)serialized.
     /// </summary>
-    /// <value>
-    /// A PropertyBag&lt;IPropertyBagValue&gt; object that contains key-value pairs of various data related to the test 
-    /// operation, such as resolved IP addresses from DNS lookup, HTTP response headers, HTML content, or captured 
-    /// screenshots from the headless browsers. 
-    /// </value>
-    /// <remarks>
-    /// This property bag requires all objects to inherit from the <see cref="IPropertyBagValue"/> interface, so that 
-    /// they can be serialized and deserialized using the serializers that support the ISerializable interface. This 
-    /// enables the property bag to be saved and loaded to and from XML writers and readers.
-    /// </remarks>
-    public required PropertyBag<IPropertyBagValue>? PropertyBag { get; init; }
+    public PropertyBag? PropertyBag { get; init; }
 
     /// <summary>
     /// Gets or sets the error message of the test step.
@@ -105,10 +86,10 @@ public sealed record TestStep : ISerializable
     public string? ErrorMessage { get; init; }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="TestStep"/> class.
+    /// Parameterless constructor for serialization.
     /// </summary>
     public TestStep()
-    { }
+    {}
 
     /// <summary>
     /// Initializes a new instance of the <see cref="TestStep"/> class with serialized data.
@@ -124,7 +105,7 @@ public sealed record TestStep : ISerializable
         ArgumentNullException.ThrowIfNull(info, nameof(info));
 
         _name = (string)info.GetValue(nameof(Name), typeof(string)).RequireNotNull(nameof(Name));
-        _startDate = (DateTime)info.GetValue(nameof(StartDate), typeof(DateTime)).RequireNotNull(nameof(StartDate));
+        StartDate = (DateTime)info.GetValue(nameof(StartDate), typeof(DateTime)).RequireNotNull(nameof(StartDate));
         TestComponentIteration = info.GetInt32(nameof(TestComponentIteration));
         Duration = (TimeSpan)info.GetValue(nameof(Duration), typeof(TimeSpan)).RequireNotNull(nameof(Duration));
         Type = Enum.Parse<TestStepType>((string)info
@@ -133,9 +114,9 @@ public sealed record TestStep : ISerializable
         Result = Enum.Parse<TestStepResult>((string)info
             .GetValue(nameof(Result), typeof(string))
             .RequireNotNull(nameof(Result)));
-        PropertyBag = (PropertyBag<IPropertyBagValue>?)info.GetValue(
+        PropertyBag = (PropertyBag?)info.GetValue(
                 name: nameof(PropertyBag),
-                type: typeof(PropertyBag<IPropertyBagValue>));
+                type: typeof(PropertyBag));
         ErrorMessage = info.GetValue(nameof(ErrorMessage), typeof(string)) as string;
     }
 
@@ -148,7 +129,7 @@ public sealed record TestStep : ISerializable
         string msg = $"{StartDate} " +
             $"({Duration.GetFormattedTime()}) " +
             $"[{Type}]: " +
-            $"{Name}{GetMethodName()} " +
+            $"{Name} " +
             $"{Result.GetDisplayName()}.";
 
         if (!string.IsNullOrEmpty(ErrorMessage))
@@ -167,16 +148,7 @@ public sealed record TestStep : ISerializable
         info.AddValue(nameof(Duration), Duration, typeof(TimeSpan));
         info.AddValue(nameof(Type), Type.ToString(), typeof(string));
         info.AddValue(nameof(Result), Result.ToString(), typeof(string));
-        info.AddValue(nameof(PropertyBag), PropertyBag, typeof(PropertyBag<IPropertyBagValue>));
+        info.AddValue(nameof(PropertyBag), PropertyBag, typeof(PropertyBag));
         info.AddValue(nameof(ErrorMessage), ErrorMessage, typeof(string));
-    }
-
-    private string? GetMethodName()
-    {
-        PropertyBagValue<string>? bagValue = null;
-        PropertyBag?.TryGetProperty(key: new("MethodName"), out bagValue);
-
-        string? methodName = !string.IsNullOrWhiteSpace(bagValue?.Value) ? $":{bagValue.Value}" : null;
-        return methodName;
     }
 }

@@ -7,6 +7,7 @@
 
 using Moq;
 using Xping.Sdk.Core.Components;
+using Xping.Sdk.Core.Configuration;
 using Xping.Sdk.Core.Session;
 
 namespace Xping.Sdk.UnitTests.Components;
@@ -18,7 +19,7 @@ internal class CompositeTestsTests
         public override Task HandleAsync(
             Uri url,
             TestSettings settings,
-            Core.Components.TestContext context,
+            Core.Session.TestContext context,
             IServiceProvider serviceProvider,
             CancellationToken cancellationToken = default)
         {

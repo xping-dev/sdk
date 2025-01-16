@@ -6,7 +6,7 @@
  */
 
 using Xping.Sdk.Core.Common;
-using Xping.Sdk.Core.Components;
+using Xping.Sdk.Core.Session;
 using Xping.Sdk.Shared;
 using Xping.Sdk.Validations.Content.Html;
 using Xping.Sdk.Validations.TextUtils;
@@ -51,7 +51,7 @@ internal class HttpHeaderAssertions(
                 $"data.");
         }
 
-        // Create a successful test step with detailed information about the current test operation.
+        // CreateInstrumentedContext a successful test step with detailed information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);

@@ -8,8 +8,8 @@
 using Microsoft.Playwright;
 using Moq;
 using Xping.Sdk.Core.Clients.Browser;
-using Xping.Sdk.Core.Clients.Browser.Internals;
 using Xping.Sdk.Core.Components;
+using Xping.Sdk.Core.HttpClients.Internals;
 
 namespace Xping.Sdk.Core.UnitTests.Clients.Browser.Internals;
 
@@ -19,7 +19,7 @@ public sealed class DefaultBrowserFactoryTests
     private Mock<IBrowserType> _mockBrowserType;
     private Mock<ISelectors> _mockSelectors;
 
-    class DefaultBrowserFactoryUnderTests(IPlaywright playwright) : DefaultBrowserFactory
+    class DefaultBrowserFactoryUnderTests(IPlaywright playwright) : BrowserClientFactory
     {
         private readonly IPlaywright _playwright = playwright;
 
@@ -53,7 +53,7 @@ public sealed class DefaultBrowserFactoryTests
     {
         // Arrange
         var factory = new DefaultBrowserFactoryUnderTests(_mockPlaywright.Object);
-        await factory.CreateClientAsync(new BrowserConfiguration(), new TestSettings()).ConfigureAwait(false);
+        await factory.CreateClientAsync(new BrowserClientOptions(), new TestSettings()).ConfigureAwait(false);
 
         // Act
         factory.Dispose();
@@ -67,7 +67,7 @@ public sealed class DefaultBrowserFactoryTests
     {
         // Arrange
         var factory = new DefaultBrowserFactoryUnderTests(_mockPlaywright.Object);
-        await factory.CreateClientAsync(new BrowserConfiguration(), new TestSettings()).ConfigureAwait(false);
+        await factory.CreateClientAsync(new BrowserClientOptions(), new TestSettings()).ConfigureAwait(false);
 
         // Act
         factory.Dispose();
@@ -107,7 +107,7 @@ public sealed class DefaultBrowserFactoryTests
     {
         // Arrange
         using var factory = new DefaultBrowserFactoryUnderTests(_mockPlaywright.Object);
-        var configuration = new BrowserConfiguration
+        var configuration = new BrowserClientOptions
         {
             Headless = true
         };
@@ -125,7 +125,7 @@ public sealed class DefaultBrowserFactoryTests
     {
         // Arrange
         using var factory = new DefaultBrowserFactoryUnderTests(_mockPlaywright.Object);
-        var configuration = new BrowserConfiguration();
+        var configuration = new BrowserClientOptions();
 
         // Act
         var client = await factory.CreateClientAsync(configuration, new TestSettings()).ConfigureAwait(false);
@@ -144,7 +144,7 @@ public sealed class DefaultBrowserFactoryTests
     {
         // Arrange
         using var factory = new DefaultBrowserFactoryUnderTests(_mockPlaywright.Object);
-        var configuration = new BrowserConfiguration
+        var configuration = new BrowserClientOptions
         {
             BrowserType = browser,
         };

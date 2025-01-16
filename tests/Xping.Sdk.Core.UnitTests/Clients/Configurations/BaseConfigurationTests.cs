@@ -10,15 +10,15 @@ using Microsoft.Playwright;
 using System.Net.Http.Json;
 using System.Net;
 using System.Text;
-using Xping.Sdk.Core.Clients;
-using Xping.Sdk.Core.Common;
 using Cookie = System.Net.Cookie;
+using Xping.Sdk.Core.Models;
+using Xping.Sdk.Core.Configuration;
 
 namespace Xping.Sdk.Core.UnitTests.HttpClients.Configurations;
 
 public sealed class BaseConfigurationTests
 {
-    class BaseConfigurationUnderTest : BaseConfiguration
+    class BaseConfigurationUnderTest : HttpClientOptions
     { }
 
     [Test]

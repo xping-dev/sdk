@@ -18,7 +18,8 @@ using Xping.Sdk.Validations.Content.Html;
 using Xping.Sdk.Validations.Content.Html.Internals;
 using Xping.Sdk.Validations.Content.Html.Internals.Selectors;
 using Xping.Sdk.Validations.TextUtils;
-using TestContext = Xping.Sdk.Core.Components.TestContext;
+using TestContext = Xping.Sdk.Core.Session.TestContext;
+using Xping.Sdk.Core.Models;
 
 namespace Xping.Sdk.Availability.UnitTests.Validations.Content.Html.Internals;
 

@@ -7,6 +7,7 @@
 
 using Xping.Sdk.Core.Session;
 using Xping.Sdk.Core.Session.Serialization;
+using Xping.Sdk.Core.Utilities.Serialization;
 
 namespace Xping.Sdk.UnitTests.Session;
 

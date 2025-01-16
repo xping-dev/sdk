@@ -9,7 +9,7 @@ using System.Net;
 using System.Net.Http.Headers;
 using Microsoft.Net.Http.Headers;
 using Xping.Sdk.Core.Common;
-using Xping.Sdk.Core.Components;
+using Xping.Sdk.Core.Session;
 using Xping.Sdk.Validations.TextUtils;
 using Xping.Sdk.Validations.TextUtils.Internals;
 
@@ -35,7 +35,7 @@ internal class HttpAssertions(IHttpResponse httpResponse) : IHttpAssertions
                 $"exception occurred as part of validating HTTP response data.");
         }
 
-        // Create a successful test step with detailed information about the current test operation.
+        // CreateInstrumentedContext a successful test step with detailed information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -60,7 +60,7 @@ internal class HttpAssertions(IHttpResponse httpResponse) : IHttpAssertions
                 $"\"{(int)_response.StatusCode}\". This exception occurred as part of validating HTTP response data.");
         }
 
-        // Create a successful test step with detailed information about the current test operation.
+        // CreateInstrumentedContext a successful test step with detailed information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -97,7 +97,7 @@ internal class HttpAssertions(IHttpResponse httpResponse) : IHttpAssertions
                 $"Expected to find HTTP header \"{normalizedName}\", but no such header exists. This exception " +
                 $"occurred as part of validating HTTP response data.");
         
-        // Create a successful test step with detailed information about the current test operation.
+        // CreateInstrumentedContext a successful test step with detailed information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -152,7 +152,7 @@ internal class HttpAssertions(IHttpResponse httpResponse) : IHttpAssertions
                 $"validating HTTP response data.");
         }
 
-        // Create a successful test step with detailed information about the current test operation.
+        // CreateInstrumentedContext a successful test step with detailed information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -193,7 +193,7 @@ internal class HttpAssertions(IHttpResponse httpResponse) : IHttpAssertions
                 $"Expected HTTP response body to contain \"{normalizedExpectedContent}\", but no such string was " +
                 $"found. This exception occurred as part of validating HTTP response data.");
         
-        // Create a successful test step with detailed information about the current test operation.
+        // CreateInstrumentedContext a successful test step with detailed information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -213,7 +213,7 @@ internal class HttpAssertions(IHttpResponse httpResponse) : IHttpAssertions
 
         if (_responseTime < maxDuration)
         {
-            // Create a successful test step with detailed information about the current test operation.
+            // CreateInstrumentedContext a successful test step with detailed information about the current test operation.
             var testStep = _context.SessionBuilder.Build();
             // Report the progress of this test step.
             _context.Progress?.Report(testStep);

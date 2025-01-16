@@ -7,10 +7,10 @@
 
 using Microsoft.Extensions.DependencyInjection;
 using Xping.Sdk.Core;
-using Xping.Sdk.Core.DependencyInjection;
-using Xping.Sdk.Core.Clients.Browser;
-using Xping.Sdk.Core.Clients.Http;
-using Xping.Sdk.Core.Session;
+using Xping.Sdk.Core.BrowserManagement;
+using Xping.Sdk.Core.Configuration;
+using Xping.Sdk.Core.Extensions;
+using Xping.Sdk.Core.Services;
 
 namespace Xping.Sdk.UnitTests.DependencyInjection;
 
@@ -37,7 +37,7 @@ internal class DependencyInjectionTests
 
         bool configurationCalled = false;
 
-        void Configure(IServiceProvider provider, HttpClientFactoryConfiguration config)
+        void Configure(IServiceProvider provider, HttpClientFactoryOptions config)
         {
             Assert.Multiple(() =>
             {
@@ -64,7 +64,7 @@ internal class DependencyInjectionTests
         serviceDescriptors.AddBrowserClientFactory();
 
         // Assert
-        Assert.That(serviceDescriptors.Any(d => d.ServiceType.Name == nameof(IBrowserFactory)), Is.True);
+        Assert.That(serviceDescriptors.Any(d => d.ServiceType.Name == nameof(IBrowserClientFactory)), Is.True);
     }
 
     [Test]

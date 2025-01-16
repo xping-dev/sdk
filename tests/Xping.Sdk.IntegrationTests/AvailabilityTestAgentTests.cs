@@ -16,12 +16,13 @@ using Xping.Sdk.Validations.Content.Page;
 using Xping.Sdk.Validations.HttpResponse;
 using Xping.Sdk.Core;
 using Xping.Sdk.Core.Clients.Http;
-using Xping.Sdk.Core.Common;
 using Xping.Sdk.Core.Components;
 using Xping.Sdk.Core.Extensions;
 using Xping.Sdk.Core.Session;
 using Xping.Sdk.IntegrationTests.HttpServer;
 using Xping.Sdk.IntegrationTests.TestFixtures;
+using Xping.Sdk.Core.Configuration;
+using Xping.Sdk.Core.Models;
 
 namespace Xping.Sdk.IntegrationTests;
 
@@ -158,7 +159,7 @@ public class AvailabilityTestAgentTests(IServiceProvider serviceProvider)
 
         // Assert
         Assert.That(session.Steps.Any(step =>
-            step.Name.StartsWith(nameof(HttpClientRequestSender), StringComparison.InvariantCulture) &&
+            step.Name.StartsWith(nameof(HttpClientHandler), StringComparison.InvariantCulture) &&
             step.Result == TestStepResult.Failed &&
             step.ErrorMessage == expectedErrMsg), Is.True);
     }
@@ -459,7 +460,7 @@ public class AvailabilityTestAgentTests(IServiceProvider serviceProvider)
 
         // Assert
         var httpRequestSteps = session.Steps.Where(s => 
-            s.Name.StartsWith(nameof(HttpClientRequestSender), StringComparison.InvariantCulture)).ToList();
+            s.Name.StartsWith(nameof(HttpClientHandler), StringComparison.InvariantCulture)).ToList();
         var redirectionStep = httpRequestSteps.First();
         var destinationStep = httpRequestSteps.Last();
 
@@ -502,7 +503,7 @@ public class AvailabilityTestAgentTests(IServiceProvider serviceProvider)
 
         // Assert
         var httpRequestSteps = session.Steps.Where(s =>
-            s.Name.StartsWith(nameof(HttpClientRequestSender), StringComparison.InvariantCulture)).ToList();
+            s.Name.StartsWith(nameof(HttpClientHandler), StringComparison.InvariantCulture)).ToList();
         var redirectionStep = httpRequestSteps.First();
         var destinationStep = httpRequestSteps.Last();
 
@@ -582,7 +583,7 @@ public class AvailabilityTestAgentTests(IServiceProvider serviceProvider)
 
         // Assert
         var httpRequestSteps = session.Steps.Where(s =>
-            s.Name.StartsWith(nameof(HttpClientRequestSender), StringComparison.InvariantCulture)).ToList();
+            s.Name.StartsWith(nameof(HttpClientHandler), StringComparison.InvariantCulture)).ToList();
         var destinationStep = httpRequestSteps.Last();
 
         Assert.Multiple(() =>
@@ -632,7 +633,7 @@ public class AvailabilityTestAgentTests(IServiceProvider serviceProvider)
 
         // Assert
         var httpRequestSteps = session.Steps.Where(s =>
-            s.Name.StartsWith(nameof(HttpClientRequestSender), StringComparison.InvariantCulture)).ToList();
+            s.Name.StartsWith(nameof(HttpClientHandler), StringComparison.InvariantCulture)).ToList();
         var destinationStep = httpRequestSteps.Last();
 
         var destinationStatusCode = destinationStep.PropertyBag!.GetProperty<PropertyBagValue<string>>(
@@ -672,7 +673,7 @@ public class AvailabilityTestAgentTests(IServiceProvider serviceProvider)
 
         // Assert
         var httpRequestSteps = session.Steps.Where(s =>
-            s.Name.StartsWith(nameof(HttpClientRequestSender), StringComparison.InvariantCulture)).ToList();
+            s.Name.StartsWith(nameof(HttpClientHandler), StringComparison.InvariantCulture)).ToList();
 
         Assert.That(httpRequestSteps, Has.Count.EqualTo(1));
     }

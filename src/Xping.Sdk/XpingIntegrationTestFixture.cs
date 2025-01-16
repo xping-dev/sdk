@@ -7,7 +7,7 @@
 
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Hosting;
-using Xping.Sdk.Core.DependencyInjection;
+using Xping.Sdk.Core.Extensions;
 
 namespace Xping.Sdk;
 

@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using System.Xml.XPath;
 using HtmlAgilityPack;
 using Xping.Sdk.Core.Common;
-using Xping.Sdk.Core.Components;
+using Xping.Sdk.Core.Session;
 using Xping.Sdk.Shared;
 using Xping.Sdk.Validations.Content.Html.Internals.Selectors;
 using Xping.Sdk.Validations.TextUtils;
@@ -50,7 +50,7 @@ internal class InstrumentedHtmlContent : IHtmlContent
             $"No nodes were found using the locator. Ensure that the HTML content has the appropriate nodes " +
             $"before attempting to perform the selection. This error occurred during the validation of HTML data.");
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = Context.SessionBuilder
             .Build(
                 new PropertyBagKey(key: "Nodes"),
@@ -77,7 +77,7 @@ internal class InstrumentedHtmlContent : IHtmlContent
             $"No nodes were found using the locator. Ensure that the HTML content has the appropriate nodes " +
             $"before attempting to perform the selection. This error occurred during the validation of HTML data.");
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = Context.SessionBuilder
             .Build(
                 new PropertyBagKey(key: "Nodes"),
@@ -108,7 +108,7 @@ internal class InstrumentedHtmlContent : IHtmlContent
             $"No nodes were found using the locator. Ensure that the HTML content has the appropriate nodes " +
             $"before attempting to perform the selection. This error occurred during the validation of HTML data.");
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = Context.SessionBuilder
             .Build(
                 new PropertyBagKey(key: "Nodes"),
@@ -135,7 +135,7 @@ internal class InstrumentedHtmlContent : IHtmlContent
             $"No nodes were found using the locator. Ensure that the HTML content has the appropriate nodes " +
             $"before attempting to perform the selection. This error occurred during the validation of HTML data.");
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = Context.SessionBuilder
             .Build(
                 new PropertyBagKey(key: "Nodes"),
@@ -165,7 +165,7 @@ internal class InstrumentedHtmlContent : IHtmlContent
             $"No nodes were found using the locator. Ensure that the HTML content has the appropriate nodes " +
             $"before attempting to perform the selection. This error occurred during the validation of HTML data.");
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = Context.SessionBuilder
             .Build(
                 new PropertyBagKey(key: "Nodes"),
@@ -192,7 +192,7 @@ internal class InstrumentedHtmlContent : IHtmlContent
             $"No nodes were found using the locator. Ensure that the HTML content has the appropriate nodes " +
             $"before attempting to perform the selection. This error occurred during the validation of HTML data.");
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = Context.SessionBuilder
             .Build(
                 new PropertyBagKey(key: "Nodes"),
@@ -222,7 +222,7 @@ internal class InstrumentedHtmlContent : IHtmlContent
             $"No nodes were found using the locator. Ensure that the HTML content has the appropriate nodes " +
             $"before attempting to perform the selection. This error occurred during the validation of HTML data.");
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = Context.SessionBuilder
             .Build(
                 new PropertyBagKey(key: "Nodes"),
@@ -249,7 +249,7 @@ internal class InstrumentedHtmlContent : IHtmlContent
             $"No nodes were found using the locator. Ensure that the HTML content has the appropriate nodes " +
             $"before attempting to perform the selection. This error occurred during the validation of HTML data.");
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = Context.SessionBuilder
             .Build(
                 new PropertyBagKey(key: "Nodes"),
@@ -279,7 +279,7 @@ internal class InstrumentedHtmlContent : IHtmlContent
             $"No nodes were found using the locator. Ensure that the HTML content has the appropriate nodes " +
             $"before attempting to perform the selection. This error occurred during the validation of HTML data.");
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = Context.SessionBuilder
             .Build(
                 new PropertyBagKey(key: "Nodes"),
@@ -306,7 +306,7 @@ internal class InstrumentedHtmlContent : IHtmlContent
             $"No nodes were found using the locator. Ensure that the HTML content has the appropriate nodes " +
             $"before attempting to perform the selection. This error occurred during the validation of HTML data.");
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = Context.SessionBuilder
             .Build(
                 new PropertyBagKey(key: "Nodes"),
@@ -336,7 +336,7 @@ internal class InstrumentedHtmlContent : IHtmlContent
             $"No nodes were found using the locator. Ensure that the HTML content has the appropriate nodes " +
             $"before attempting to perform the selection. This error occurred during the validation of HTML data.");
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = Context.SessionBuilder
             .Build(
                 new PropertyBagKey(key: "Nodes"),

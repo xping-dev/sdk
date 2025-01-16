@@ -16,7 +16,7 @@ public sealed class HttpClientFactoryConfigurationTests
     public void PooledConnectionLifetimeShouldHaveOneMinuteByDefault()
     {
         // Arrange
-        var httpClientConfiguration = new HttpClientFactoryConfiguration();
+        var httpClientConfiguration = new HttpClientFactoryOptions();
 
         // Assert
         Assert.That(httpClientConfiguration.PooledConnectionLifetime, Is.EqualTo(TimeSpan.FromMinutes(1)));
@@ -26,7 +26,7 @@ public sealed class HttpClientFactoryConfigurationTests
     public void SleepDurationsShouldHaveCorrectDefaultValues()
     {
         // Arrange
-        var httpClientConfiguration = new HttpClientFactoryConfiguration();
+        var httpClientConfiguration = new HttpClientFactoryOptions();
 
         // Act
         var sleepDurations = httpClientConfiguration.SleepDurations.ToList();
@@ -44,7 +44,7 @@ public sealed class HttpClientFactoryConfigurationTests
     public void HandledEventsAllowedBeforeBreakingShouldReturnThreeByDefault()
     {
         // Arrange
-        var httpClientConfiguration = new HttpClientFactoryConfiguration();
+        var httpClientConfiguration = new HttpClientFactoryOptions();
 
         // Assert
         Assert.That(httpClientConfiguration.HandledEventsAllowedBeforeBreaking, Is.EqualTo(3));
@@ -54,7 +54,7 @@ public sealed class HttpClientFactoryConfigurationTests
     public void DurationOfBreakShouldBe30SecondsByDefault()
     {
         // Arrange
-        var httpClientConfiguration = new HttpClientFactoryConfiguration();
+        var httpClientConfiguration = new HttpClientFactoryOptions();
 
         // Act
         Assert.That(httpClientConfiguration.DurationOfBreak, Is.EqualTo(TimeSpan.FromSeconds(30)));
@@ -64,7 +64,7 @@ public sealed class HttpClientFactoryConfigurationTests
     public void AutomaticDecompressionShouldBeEnabledForAllByDefault()
     {
         // Arrange
-        var httpClientConfiguration = new HttpClientFactoryConfiguration();
+        var httpClientConfiguration = new HttpClientFactoryOptions();
 
         // Act
         Assert.That(httpClientConfiguration.AutomaticDecompression, Is.EqualTo(DecompressionMethods.All));

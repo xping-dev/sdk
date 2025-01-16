@@ -9,7 +9,7 @@ using System.Collections;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Xping.Sdk.Core;
-using Xping.Sdk.Core.DependencyInjection;
+using Xping.Sdk.Core.Extensions;
 
 namespace Xping.Sdk;
 
@@ -50,7 +50,7 @@ public class XpingTestFixture : IEnumerable, IDisposable
     {
         var testAgent = _host.Value.Services.GetRequiredService<TestAgent>();
 
-        yield return new object[] { testAgent };
+        yield return new object[] { testAgent, _host.Value.Services };
     }
 
     /// <summary>

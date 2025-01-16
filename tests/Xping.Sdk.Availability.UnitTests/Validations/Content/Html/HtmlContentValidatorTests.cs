@@ -9,10 +9,12 @@ using System.Text;
 using Moq;
 using Xping.Sdk.UnitTests.Helpers;
 using Xping.Sdk.Core.Common;
-using Xping.Sdk.Core.Components;
-using Xping.Sdk.Core.Session;
 using Xping.Sdk.Validations.Content.Html;
-using TestContext = Xping.Sdk.Core.Components.TestContext;
+using TestContext = Xping.Sdk.Core.Session.TestContext;
+using Xping.Sdk.Core.Instrumentation;
+using Xping.Sdk.Core.Configuration;
+using Xping.Sdk.Core.Services;
+using Xping.Sdk.Core.Models;
 
 namespace Xping.Sdk.UnitTests.Validations.Content.Html;
 

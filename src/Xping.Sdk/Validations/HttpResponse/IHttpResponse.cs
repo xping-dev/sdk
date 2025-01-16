@@ -5,7 +5,7 @@
  * License: [MIT]
  */
 
-using Xping.Sdk.Core.Components;
+using Xping.Sdk.Core.Session;
 
 namespace Xping.Sdk.Validations.HttpResponse;
 

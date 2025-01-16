@@ -10,7 +10,7 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 using Microsoft.Playwright;
 using Xping.Sdk.Core.Common;
-using Xping.Sdk.Core.Components;
+using Xping.Sdk.Core.Session;
 using Xping.Sdk.Shared;
 
 namespace Xping.Sdk.Validations.Content.Page.Internals;
@@ -40,7 +40,7 @@ internal class InstrumentedFrameLocator(TestContext context, IFrameLocator locat
 
         var result = _locator.FrameLocator(selector);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -63,7 +63,7 @@ internal class InstrumentedFrameLocator(TestContext context, IFrameLocator locat
 
         var result = _locator.GetByAltText(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -86,7 +86,7 @@ internal class InstrumentedFrameLocator(TestContext context, IFrameLocator locat
 
         var result = _locator.GetByAltText(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -109,7 +109,7 @@ internal class InstrumentedFrameLocator(TestContext context, IFrameLocator locat
 
         var result = _locator.GetByLabel(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -132,7 +132,7 @@ internal class InstrumentedFrameLocator(TestContext context, IFrameLocator locat
 
         var result = _locator.GetByLabel(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -155,7 +155,7 @@ internal class InstrumentedFrameLocator(TestContext context, IFrameLocator locat
 
         var result = _locator.GetByPlaceholder(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -178,7 +178,7 @@ internal class InstrumentedFrameLocator(TestContext context, IFrameLocator locat
 
         var result = _locator.GetByPlaceholder(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -201,7 +201,7 @@ internal class InstrumentedFrameLocator(TestContext context, IFrameLocator locat
 
         var result = _locator.GetByRole(role, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -221,7 +221,7 @@ internal class InstrumentedFrameLocator(TestContext context, IFrameLocator locat
 
         var result = _locator.GetByTestId(testId);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -241,7 +241,7 @@ internal class InstrumentedFrameLocator(TestContext context, IFrameLocator locat
 
         var result = _locator.GetByTestId(testId);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -264,7 +264,7 @@ internal class InstrumentedFrameLocator(TestContext context, IFrameLocator locat
 
         var result = _locator.GetByText(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -287,7 +287,7 @@ internal class InstrumentedFrameLocator(TestContext context, IFrameLocator locat
 
         var result = _locator.GetByText(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -310,7 +310,7 @@ internal class InstrumentedFrameLocator(TestContext context, IFrameLocator locat
 
         var result = _locator.GetByTitle(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -333,7 +333,7 @@ internal class InstrumentedFrameLocator(TestContext context, IFrameLocator locat
 
         var result = _locator.GetByTitle(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -356,7 +356,7 @@ internal class InstrumentedFrameLocator(TestContext context, IFrameLocator locat
 
         var result = _locator.Locator(selectorOrLocator, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -382,7 +382,7 @@ internal class InstrumentedFrameLocator(TestContext context, IFrameLocator locat
 
         var result = _locator.Locator(selectorOrLocator, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -403,7 +403,7 @@ internal class InstrumentedFrameLocator(TestContext context, IFrameLocator locat
 
         var result = _locator.Nth(index);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);

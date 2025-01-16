@@ -9,7 +9,7 @@ using System.Globalization;
 using System.Xml.XPath;
 using HtmlAgilityPack;
 using Xping.Sdk.Core.Common;
-using Xping.Sdk.Core.Components;
+using Xping.Sdk.Core.Session;
 using Xping.Sdk.Shared;
 using Xping.Sdk.Validations.Content.Html.Internals.Selectors;
 using Xping.Sdk.Validations.TextUtils;
@@ -51,7 +51,7 @@ internal class InstrumentedHtmlLocator : IHtmlLocator
 
         Iterator.First();
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = Context.SessionBuilder
             .Build(
                 new PropertyBagKey(key: "CurrentNode"),
@@ -75,7 +75,7 @@ internal class InstrumentedHtmlLocator : IHtmlLocator
 
         Iterator.Last();
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = Context.SessionBuilder
             .Build(
                 new PropertyBagKey(key: "CurrentNode"),
@@ -122,7 +122,7 @@ internal class InstrumentedHtmlLocator : IHtmlLocator
                 new PropertyBagValue<string[]>(filteredNodes.Select(n => n.OriginalName.Trim()).ToArray()));
         }
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = Context.SessionBuilder.Build();
         // Report the progress of this test step.
         Context.Progress?.Report(testStep);
@@ -165,7 +165,7 @@ internal class InstrumentedHtmlLocator : IHtmlLocator
                     new PropertyBagValue<string[]>(locatedNodes?.Select(n => n.OriginalName.Trim()).ToArray() ?? ["Null"]));
         }
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = Context.SessionBuilder.Build();
         // Report the progress of this test step.
         Context.Progress?.Report(testStep);
@@ -202,7 +202,7 @@ internal class InstrumentedHtmlLocator : IHtmlLocator
 
         Iterator.Nth(index);
 
-        // Create a successful test step with detailed information about the current state of the HTML locator.
+        // CreateInstrumentedContext a successful test step with detailed information about the current state of the HTML locator.
         var testStep = Context.SessionBuilder
             .Build(
                 new PropertyBagKey(key: "CurrentNode"),

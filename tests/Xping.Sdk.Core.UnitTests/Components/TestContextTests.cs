@@ -8,9 +8,10 @@
 namespace Xping.Sdk.UnitTests.Components;
 
 using Moq;
-using Xping.Sdk.Core.Common;
+using Xping.Sdk.Core.Instrumentation;
+using Xping.Sdk.Core.Services;
 using Xping.Sdk.Core.Session;
-using TestContext = Core.Components.TestContext;
+using TestContext = Core.Session.TestContext;
 
 internal class TestContextTests
 {
@@ -37,7 +38,7 @@ internal class TestContextTests
     {
         Assert.Throws<ArgumentNullException>(() => new TestContext(
             sessionBuilder: Mock.Of<ITestSessionBuilder>(),
-            instrumentation: null!,
+            instrumentationFactory: null!,
             progress: null));
     }
 

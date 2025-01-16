@@ -30,7 +30,7 @@ public class WebAppFactory : WebApplicationFactory<Program>
     }
 
     /// <summary>
-    /// Replace the default DbContext with an in-memory database
+    /// Update the default DbContext with an in-memory database
     /// </summary>
     private static void ReplaceDbContextWithInMemoryDb(IServiceCollection services)
     {

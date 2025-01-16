@@ -11,7 +11,7 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 using Microsoft.Playwright;
 using Xping.Sdk.Core.Common;
-using Xping.Sdk.Core.Components;
+using Xping.Sdk.Core.Session;
 using Xping.Sdk.Shared;
 
 namespace Xping.Sdk.Validations.Content.Page.Internals;
@@ -47,7 +47,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = await _frame.AddScriptTagAsync(options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -67,7 +67,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = await _frame.AddStyleTagAsync(options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -90,7 +90,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.CheckAsync(selector, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -113,7 +113,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.ClickAsync(selector, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -130,7 +130,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.ContentAsync();
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -153,7 +153,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.DblClickAsync(selector, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -186,7 +186,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.DispatchEventAsync(selector, type, eventInit, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -212,7 +212,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.DragAndDropAsync(source, target, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -238,7 +238,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.EvalOnSelectorAllAsync<T>(selector, expression, arg);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -264,7 +264,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.EvalOnSelectorAllAsync(selector, expression, arg);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -297,7 +297,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.EvalOnSelectorAsync<T>(selector, expression, arg, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -323,7 +323,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.EvalOnSelectorAsync(selector, expression, arg);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -346,7 +346,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.EvaluateAsync<T>(expression, arg);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -369,7 +369,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.EvaluateAsync(expression, arg);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -392,7 +392,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.EvaluateHandleAsync(expression, arg);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -418,7 +418,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.FillAsync(selector, value, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -441,7 +441,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.FocusAsync(selector, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -458,7 +458,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = await _frame.FrameElementAsync().ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -478,7 +478,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.FrameLocator(selector);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -505,7 +505,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
                new PropertyBagKey(key: "Value"),
                new PropertyBagValue<string>(result ?? "Null"));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -528,7 +528,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.GetByAltText(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -551,7 +551,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.GetByAltText(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -574,7 +574,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.GetByLabel(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -597,7 +597,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.GetByLabel(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -620,7 +620,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.GetByPlaceholder(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -643,7 +643,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.GetByPlaceholder(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -666,7 +666,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.GetByRole(role, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -686,7 +686,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.GetByTestId(testId);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -706,7 +706,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.GetByTestId(testId);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -729,7 +729,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.GetByText(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -752,7 +752,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.GetByText(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -775,7 +775,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.GetByTitle(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -798,7 +798,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.GetByTitle(text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -821,7 +821,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.GotoAsync(url, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -844,7 +844,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.HoverAsync(selector, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -867,7 +867,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.InnerHTMLAsync(selector, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -890,7 +890,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.InnerTextAsync(selector, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -918,7 +918,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -946,7 +946,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result.ToString()));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -974,7 +974,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result.ToString()));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1002,7 +1002,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result.ToString()));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1030,7 +1030,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result.ToString()));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1058,7 +1058,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result.ToString()));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1086,7 +1086,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result.ToString()));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1109,7 +1109,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.Locator(selector, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1135,7 +1135,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.PressAsync(selector, key, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1155,7 +1155,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = await _frame.QuerySelectorAllAsync(selector).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1178,7 +1178,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = await _frame.QuerySelectorAsync(selector, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1201,7 +1201,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.RunAndWaitForNavigationAsync(action, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1235,7 +1235,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
                  new PropertyBagKey(key: "Options"),
                  new PropertyBagValue<string[]>([.. result]));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1271,7 +1271,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
                  new PropertyBagKey(key: "Options"),
                  new PropertyBagValue<string[]>([.. result]));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1305,7 +1305,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
                  new PropertyBagKey(key: "Options"),
                  new PropertyBagValue<string[]>([.. result]));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1339,7 +1339,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
                  new PropertyBagKey(key: "Options"),
                  new PropertyBagValue<string[]>([.. result]));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1377,7 +1377,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
                  new PropertyBagKey(key: "Options"),
                  new PropertyBagValue<string[]>([.. result]));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1411,7 +1411,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
                  new PropertyBagKey(key: "Options"),
                  new PropertyBagValue<string[]>([.. result]));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1437,7 +1437,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.SetCheckedAsync(selector, checkedState, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1460,7 +1460,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.SetContentAsync(html, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1486,7 +1486,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.SetInputFilesAsync(selector, files, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1515,7 +1515,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.SetInputFilesAsync(selector, files, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1541,7 +1541,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.SetInputFilesAsync(selector, files, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1571,7 +1571,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.SetInputFilesAsync(selector, files, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1594,7 +1594,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.TapAsync(selector, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1622,7 +1622,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result ?? "Null"));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1644,7 +1644,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
                 new PropertyBagKey(key: "Value"),
                 new PropertyBagValue<string>(result));
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1671,7 +1671,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.TypeAsync(selector, text, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1694,7 +1694,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.UncheckAsync(selector, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1723,7 +1723,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.WaitForFunctionAsync(expression, arg, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1746,7 +1746,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.WaitForLoadStateAsync(state, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1767,7 +1767,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.WaitForNavigationAsync(options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1792,7 +1792,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = await _frame.WaitForSelectorAsync(selector, options).ConfigureAwait(false);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1812,7 +1812,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.WaitForTimeoutAsync(timeout);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1835,7 +1835,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.WaitForURLAsync(url, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1858,7 +1858,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.WaitForURLAsync(url, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);
@@ -1881,7 +1881,7 @@ internal class InstrumentedFrame(TestContext context, IFrame frame) : IFrame
 
         var result = _frame.WaitForURLAsync(url, options);
 
-        // Create a successful test step with information about the current test operation.
+        // CreateInstrumentedContext a successful test step with information about the current test operation.
         var testStep = _context.SessionBuilder.Build();
         // Report the progress of this test step.
         _context.Progress?.Report(testStep);

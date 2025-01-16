@@ -10,20 +10,12 @@ using Xping.Sdk.Shared;
 
 namespace Xping.Sdk.Core.Components;
 
-interface ICompositeTests
-{
-    void AddComponent(ITestComponent component);
-    bool RemoveComponent(ITestComponent component);
-    void Clear();
-    IReadOnlyCollection<ITestComponent> Components { get; }
-}
-
 /// <summary>
 /// Represents an abstract class that is used to execute a composite test component.
 /// </summary>
-public abstract class CompositeTests : TestComponent, ICompositeTests
+public abstract class CompositeTests : TestComponent
 {
-    private readonly List<ITestComponent> _components = [];
+    private readonly List<TestComponent> _components = [];
 
     /// <summary>
     /// Initializes a new instance of the CompositeTests class with the specified name and test step type.
@@ -36,7 +28,7 @@ public abstract class CompositeTests : TestComponent, ICompositeTests
     /// Adds a new instance of the TestComponent class to the current object.
     /// </summary>
     /// <param name="component">The TestComponent instance to add.</param>
-    public new void AddComponent(ITestComponent component) => 
+    public new void AddComponent(TestComponent component) => 
         _components.Add(component.RequireNotNull(nameof(component)));
 
     /// <summary>
@@ -47,7 +39,7 @@ public abstract class CompositeTests : TestComponent, ICompositeTests
     /// <c>true</c> if component is successfully removed; otherwise, <c>false</c>. This method also returns <c>false</c>
     /// when component was not found.
     /// </returns>
-    public new bool RemoveComponent(ITestComponent component) => _components.Remove(component);
+    public new bool RemoveComponent(TestComponent component) => _components.Remove(component);
 
     /// <summary>
     /// Clears all the components from the current instance.
@@ -61,7 +53,7 @@ public abstract class CompositeTests : TestComponent, ICompositeTests
     /// <summary>
     /// Gets a read-only collection of the child TestComponent instances of the current object.
     /// </summary>
-    public new IReadOnlyCollection<ITestComponent> Components => _components;
+    public new IReadOnlyCollection<TestComponent> Components => _components;
 
-    internal override ICompositeTests? GetComposite() => this;
+    internal override CompositeTests? GetComposite() => this;
 }

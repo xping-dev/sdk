@@ -5,7 +5,7 @@
  * License: [MIT]
  */
 
-using Xping.Sdk.Core.Common;
+using Xping.Sdk.Core.Models;
 
 namespace Xping.Sdk.UnitTests.Common;
 
